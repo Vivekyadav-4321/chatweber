@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@200&display=swap');
+
+*{
+    font-family: 'Jost', sans-serif;
+}
+
+a{
+    text-decoration: none;
+    color: hotpink;
+    font-weight: 900;
+}
+
+.wrapper{
+    width: 60%;
+    margin:auto;
+}
+
+ul li{
+    font: 12px;
+    font-weight: 700;
+    color: rgb(79, 79, 79);
+    margin-top: 5px;
+}
+
+p{
+    font-weight: 700;
+    color: rgb(79, 79, 79);
+
+}
+
+h1{
+    font-weight: 900;
+}
+
+
+@media (max-width: 600px){
+  p, li{
+    font-size: 13px;
+  }
+    .wrapper{
+    width: 90%;
+
+    }
+}
+
+b{
+    font-weight: 900;
+}

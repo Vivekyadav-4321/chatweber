@@ -1,0 +1,36 @@
+{
+  "name": "vastcards",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "crypto-js": "^4.1.1",
+    "express": "^4.18.1",
+    "hbs": "^4.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.5.4",
+    "node-fetch": "2.0",
+    "nodemailer": "^6.9.0",
+    "peer": "^0.6.1",
+    "random-name": "^0.1.2",
+    "socket.io": "^4.5.1",
+    "uuid": "^8.3.2",
+    "ytdl-core": "^4.11.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChatWeber/chat.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ChatWeber/chat/issues"
+  },
+  "homepage": "https://github.com/ChatWeber/chat#readme",
+  "description": ""
+}

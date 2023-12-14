@@ -1,0 +1,629 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap");
+
+body {
+    margin: 0%;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+.sitetitleconatiner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 15px;
+    border-bottom: 1px solid rgb(245, 245, 245);
+    width: 100%;
+    height: 50px;
+    position: fixed;
+    background-color: white;
+    box-shadow: #fd94ff33 0px 2px 8px 0px;
+
+}
+
+.mymessage {
+    max-width: 80%;
+}
+
+.sitetitle {
+    font-family: 'Cinzel Decorative', "cursive";
+    margin-left: 10px;
+    font-size: 18px;
+    margin-top: 5px;
+    font-weight: 800;
+    background-color: black;
+    background-clip: border-box;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 300%;
+    background-clip: border-box;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: animated_text 10s ease-in-out infinite;
+    -moz-animation: animated_text 10s ease-in-out infinite;
+    -webkit-animation: animated_text 10s ease-in-out infinite;
+}
+
+.sitelogo {
+    width: 24px;
+    height: 24px;
+    margin-top: 4px;
+    margin-right: -4px;
+    object-fit: cover;
+}
+
+.siteslogan {
+    font-size: 9px;
+    margin-top: -3px;
+    margin-left: 4px;
+    font-weight: 700;
+    display: block;
+    color: gray;
+    background: linear-gradient(8deg, rgb(10 10 10) 0%, rgb(0 0 0) 100%);
+    background-clip: border-box;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+
+.sitemotocinatiner {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-family: 'Jost', sans-serif;
+
+}
+
+
+
+
+.talktostangerh1 {
+    font-size: 25px;
+    margin-top: -10px;
+    margin-bottom: 0px;
+    word-spacing: 4px;
+    letter-spacing: 1px;
+    font-weight: bolder;
+    text-align: center;
+    color: black;
+    font-family: 'Cinzel Decorative', "cursive";
+
+}
+
+.stangerhighlight {
+    color: hotpink;
+    font-weight: 900;
+}
+
+.intoimage {
+    margin-top: 70px;
+    width: 100%;
+    height: 400px;
+    object-fit: contain;
+}
+
+
+
+.button {
+    height: 40px;
+    padding: 10px;
+    font-size: 12px;
+    padding-left: 50px;
+    padding-right: 50px;
+    font-weight: 900;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 40px;
+    font-family: 'Jost', sans-serif;
+    box-shadow: #666666 0px 2px 19px 0px;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: rgb(43, 43, 43);
+}
+
+
+p {
+    color: rgb(60, 60, 60);
+    font-size: 13px;
+    font-family: 'Jost', sans-serif;
+    margin-left: 20px;
+    margin-right: 12px;
+}
+
+li {
+    margin-top: 15px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 15px;
+    margin: 10px;
+    font-family: 'Cinzel Decorative', "cursive";
+}
+
+.introimage {
+    display: block;
+    margin: auto;
+    width: 150px;
+    height: 150px;
+}
+
+hr {
+    width: 20%;
+    height: 1px;
+    margin-top: 12px;
+
+    border: none;
+    background: rgb(255, 98, 0);
+    background: linear-gradient(151deg, rgba(255, 98, 0, 1) 0%, rgba(255, 171, 0, 1) 48%, rgba(255, 0, 0, 1) 100%);
+}
+
+a {
+    text-decoration: none;
+    display: contents;
+    color: hotpink;
+}
+
+.introcard {
+    margin-top: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 100%;
+    color: rgb(0, 0, 0);
+
+
+}
+
+
+
+.mainpointsconatiner {
+    text-align: center;
+}
+
+.fa {
+    margin: 0%;
+    margin-right: 6px;
+
+}
+
+.termsintro {
+    font-size: 12px;
+    color: gray;
+    width: 60%;
+    margin: auto;
+    font-style: oblique;
+    text-align: center;
+
+}
+
+.featuresofvastcardsspan {
+    display: flex;
+    font-weight: 900;
+    font-size: 12px;
+    height: 14px;
+    border: 2px solid #8800ff;
+    margin: auto;
+    width: 150px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    padding: 4px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 30px;
+    color: #8800ff;
+    background-color: #f8f0ff;
+    font-family: 'Jost', sans-serif;
+
+}
+
+.communitygudlinesmall,
+.knowmoreaboutrandomchat {
+    display: flex;
+    font-weight: 900;
+    font-size: 12px;
+    height: 14px;
+    border: 2px solid #098dff;
+    margin: auto;
+    width: 150px;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    padding: 4px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 30px;
+    color: #098dff;
+    background-color: #f0f8ff;
+    font-family: 'Jost', sans-serif;
+}
+
+
+.knowmoreaboutrandomchat {
+    background-color: #fbeaff;
+    color: #cc00ff;
+    border: 2px solid;
+    margin-top: 21px;
+}
+
+
+
+ol li {
+    color: rgb(60, 60, 60);
+    font-size: 13px;
+    font-family: 'Jost', sans-serif;
+    margin-left: 20px;
+    margin-right: 12px;
+    margin-top: 5px;
+}
+
+ul li {
+    margin: 4px;
+    color: rgb(60, 60, 60);
+    font-size: 13px;
+    font-family: 'Jost', sans-serif;
+    margin-left: 20px;
+    margin-right: 12px;
+    margin-top: 10px;
+
+}
+
+footer {
+    background-color: #ffe8fe;
+    text-align: center;
+    width: 100%;
+    display: flex;
+    margin: 0;
+    padding-top: 15px;
+    justify-content: center;
+    padding-bottom: 15px;
+}
+
+footer li {
+    display: inline-block;
+    font-size: 11px;
+    margin: 0%;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+footer ul {
+    padding-left: 0px;
+    margin-top: -9px;
+    margin-bottom: -8px;
+}
+
+.calltoactionbuttoncontainer {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    height: 54px;
+    margin-bottom: 15px;
+    margin-top: 8px;
+    justify-content: center;
+}
+
+
+.button {
+    height: 40px;
+    padding: 10px;
+    font-size: 12px;
+    padding-left: 40px;
+    padding-right: 50px;
+    font-weight: 900;
+    color: white;
+    border: none;
+    margin: 3px;
+    margin-top: 10px;
+    border-radius: 40px;
+    font-family: 'Jost', sans-serif;
+}
+
+
+.introcard {
+    margin-top: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    width: 60%;
+    color: rgb(0, 0, 0);
+    margin: auto;
+}
+
+
+.keyfeatures li {
+    display: inline-block;
+    font-size: 13px;
+}
+
+.keyfeatures {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    padding-left: 0%;
+    margin-top: 0px;
+    margin-bottom: 8px;
+}
+
+
+
+
+.termansdnonditionsphome {
+    color: black;
+    font-weight: 400;
+    width: 60%;
+    margin: auto;
+    margin-bottom: 15px;
+    margin-top: 15px;
+    font-size: 12px;
+}
+
+.joinachatroompics {
+    width: 150px;
+    height: 150px;
+}
+
+
+.joinchatroomconatiner {
+    border: 3px solid rgb(248, 248, 248);
+    padding: 10px;
+    text-align: center;
+    padding-top: 20px;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    margin: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 70%;
+}
+
+.randomchatroomconainer {
+    border: 3px solid rgb(248, 248, 248);
+    padding: 10px;
+    display: inline-block;
+    padding-top: 20px;
+    border-radius: 10px;
+    background-color: rgb(255, 255, 255);
+    margin: auto;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    width: 40%;
+    padding-bottom: 25px;
+}
+
+
+#chatroomidinput {
+    width: 85%;
+    margin: 5px;
+    font-family: 'Cinzel Decorative', "cursive";
+    height: 30px;
+    border: none;
+    margin-bottom: 5px;
+    width: 40px;
+    font-size: 12px;
+    border-radius: 50px;
+    box-shadow: inset 0.2rem 0.2rem 0.5rem #e2e2e2, inset -0.2rem -0.2rem 0.5rem white;
+    text-align: center;
+}
+
+.chatroomnameheading {
+    font-family: 'Cinzel Decorative', "cursive";
+    font-size: 12px;
+    margin: 4px;
+    margin-bottom: -10px;
+}
+
+.joinchatroombutton,
+.joinachatroomclearbutton {
+    background-color: #ff0080;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 5px;
+    font-family: 'Jost', sans-serif;
+    margin: 7px;
+    padding-left: 35px;
+    padding-right: 35px;
+    margin-top: 10px;
+    margin-bottom: -7px;
+    border-radius: 50px;
+}
+
+
+
+
+.joinachatroomclearbutton {
+    border: none;
+    background-color: white;
+    box-shadow: none;
+    width: auto;
+    color: black;
+    border: 2px solid black;
+}
+
+.joinchatromheading {
+    text-align: center;
+    display: block;
+    font-family: 'Cinzel Decorative', "cursive";
+    width: auto;
+    font-weight: bold;
+    margin: auto;
+    margin-bottom: -6px;
+    font-size: 15px;
+}
+
+
+
+#chatroomidinput {
+    width: 50%;
+    font-family: 'Jost', sans-serif;
+    outline: none;
+    height: 40px;
+}
+
+.joinbuttonrandomchat {
+    padding-right: 30px;
+    padding-left: 30px;
+}
+
+.createanewroombutton {
+    color: #ff188b;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    margin: 0%;
+    margin-top: 8px;
+}
+
+.joinbuttonrandomchat {
+    margin: 30px;
+    font-weight: 600;
+
+}
+
+.chatroomimage {
+    height: 100px;
+    width: 100px;
+    object-fit: cover;
+}
+
+
+.joinpopularchatroomsbuttton {
+    margin-top: 0px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+
+
+@media only screen and (max-width: 600px) {
+
+    .intoimage {
+        margin-top: 40px;
+    }
+
+    .randomchatroomconainer {
+        width: 90%;
+    }
+
+    .joinbuttonrandomchat {
+        margin: 3px;
+    }
+
+    .createanewroombutton {
+        color: #ff188b;
+        background-color: transparent;
+        border: none;
+        box-shadow: none;
+        margin: 0%;
+        margin-top: 8px;
+    }
+
+    .joinbuttonrandomchat {
+        padding-right: 24px;
+        padding-left: 24px;
+
+    }
+
+    .joinchatroomconatiner {
+        width: 90%;
+    }
+
+    #chatroomidinput {
+        width: 95%;
+    }
+
+    .calltoactionbuttoncontainer {
+        display: flex;
+        text-align: center;
+        align-items: center;
+        height: 54px;
+        justify-content: space-evenly;
+        margin-bottom: 23px;
+        margin-top: 5px;
+    }
+
+    .mymessage {
+        max-width: 88%;
+
+    }
+
+
+
+    .introcard {
+        margin-top: 15px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        width: 100%;
+        color: rgb(0, 0, 0);
+    }
+
+    .termsintro {
+        font-size: 10px;
+        color: gray;
+        width: 95%;
+        font-style: oblique;
+        margin-left: 10px;
+        margin-right: 10px;
+        text-align: center;
+
+    }
+
+    .termansdnonditionsphome {
+        color: black;
+        font-weight: 400;
+        font-size: 10px;
+        width: 95%;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+
+}
+
+
+footer li {
+    color: rgb(62, 62, 62);
+}
+
+@media (max-width: 600px) {
+    h2 {
+        text-align: center;
+        font-size: 11px;
+        margin: 10px;
+        font-family: 'Cinzel Decorative', "cursive";
+    }
+
+    .introheading {
+        font-size: 14px;
+    }
+}
+
+p {
+    text-align: justify;
+}
+
+h2{
+    text-align: left;
+    padding-left: 11px;
+    margin-top: 24px;
+    margin-bottom: -8px;
+    font-weight: bolder;
+}
+
+
+.endline {
+    width: 300px;
+    margin: auto;
+    height: 3px;
+    border-radius: 10px;
+    color: gray;
+    margin-bottom: 20px;
+    background: #FF0091;
+}

@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+<span>
+    <ul id="allmessages" style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;">
+
+    </ul>
+     
+</span>
+<br>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+            var socket = io()
+
+    </script>
+<script>
+    socket.emit("addmetothescreathcta")
+    socket.on("addmesagetopage", (message)=>{
+       var messageconatiner =  document.getElementById("allmessages")
+        var span = document.createElement("span")
+        span.innerHTML = "<li>" +  message + "</li>" + "<br>"
+messageconatiner.append(span)
+    })
+    window.scrollTo(0, document.body.scrollHeight);
+
+    setInterval(() => {
+        socket.emit("eventtojointrandomchattextagainandaing", 122105)
+    }, 2000);
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 
+<div style="margin-top: -10px; margin-bottom: 4px">
+    <p style="font-size: 9px;color: gray; display: inline;" onclick="reportuser()" >
+        Report <li style="display: inline;font-size: 9px;" class="fa fa-flag"></li>
+    </p>
+  <p>Do's</p>
+  <ul>
+
+  </ul>
+</div> -->
+
+
+<!-- 
+
+
+<div class="introcard">
+    <div class="intocardheader">
+        <img loading="lazy" class="introimage" src="https://cdn-icons-png.flaticon.com/256/6028/6028753.png"
+            loading="lazy" alt="random chat">
+        <h2 class="introheading">
+            Why Random Chat Was Created?
+        </h2>
+    </div>
+    <div class="introtext">
+        <p>
+            Random chat services were created to allow people to connect with others from around the world in an
+            easy and anonymous way. They provide a platform for people to talk to strangers who share similar
+            interests or just chat for the fun of it.
+        </p>
+
+        <p>
+
+            It is fact that so many people don't like to make small talk but random chat with strangers and
+            acquaintances
+            can help you strengthen your mental health. You can know about different people from different
+            countries, races, gender, background, and cultures.
+        </p>
+
+
+
+
+        <p>
+            According to Gillian Sandstrom, Ph.D., social
+            interaction with strangers and acquaintances can refine and improve our well-being.
+        </p>
+
+    </div>
+</div>
+
+
+
+<div class="introcard">
+    <div class="intocardheader">
+        <img loading="lazy" class="introimage" src="https://cdn-icons-png.flaticon.com/512/7636/7636750.png"
+            loading="lazy" alt="random chat">
+        <h2 class="introheading">
+            How To Use Random Chat?
+        </h2>
+    </div>
+    <div class="introtext">
+        <p>
+            ChatWeber is designed so that everyone can use this random chat site and chat with anonymous
+            people in an easy and fast way.
+        </p>
+        <p>
+
+            You just have to visit a random chat website and we will
+            automatically connect you with the anonymous user on the web waiting for someone to connect. Below
+            we have explained the steps you need to follow to start a random chat with a stranger.
+
+        </p>
+        <ol>
+            <li>Open random chat site on any device.</li>
+            <li>Click on the video chat button if you want to chat via video or click on the text chat button if
+                you want to chat via text only.</li>
+            <li>After this you can click on the start button to initiate the conversation in the next window.
+            </li>
+            <li>After that wait for the anonymous user to connect.</li>
+            <li>Once the user is connected you can start your conversation.</li>
+            <li>Click on the shuffle or dial button to leave the current conversation and connect with the new
+                user.</li>
+        </ol>
+        <p>
+
+            You can
+            connect with the anonymous user via video, voice, and text. When you have finished your
+            conversation with the random user you can click on the shuffle button to end the conversation with
+            the
+            user and connect with the new starter and start your conversation again.
+
+        </p>
+
+        <p> You can talk with strangers which can be a meaningful and deep discussion with the stranger.
+        </p>
+
+    </div>
+</div>
+
+<div class="introcard">
+    <div class="intocardheader">
+        <img loading="lazy" class="introimage" src="https://cdn-icons-png.flaticon.com/512/4481/4481259.png"
+            loading="lazy" alt="random chat">
+        <h2 class="introheading">
+            Why Use Random Chat?
+        </h2>
+    </div>
+    <div class="introtext">
+        <p>
+
+            Today it is very easy to find the people that you already know about. You can follow them like
+            their
+            photos, videos, and other content they post. But the limitation of traditional social media is that
+            you can only interact with the people you know it.
+
+        </p>
+
+        <p>
+            It can be challenging to find a stranger on social
+            media or the web who is willing to talk with other people and talk about topics related to
+            their interests. This is one of the main reasons to use a random chat site like this.
+
+        </p>
+
+        <p>There are many other social media sites available on the internet like <a
+                href="https://www.facebook.com/">Facebook</a>, <a href="https://web.whatsapp.com/">WhatsApp</a>,
+            <a href="https://www.instagram.com/">Instagram</a>, <a
+                href="https://www.snapchat.com/">Snapchat</a>,
+            and many more. Billions of people use these sites to connect with the
+            people they have and stay updated about the things happening in the lives of their friends and
+            family, The major drawback of these traditional social media sites is that you can only connect
+            with the people you already know.
+        </p>
+
+        <p>
+            You can use random chat to find and talk
+            to
+            strangers and make them your friends if they share common interests. You can talk with strangers who
+            like
+            the same books that you read, love to listen to your favorite music and share common
+            philosophies.
+
+        </p>
+
+
+
+        <p>
+            Another reason you should use a random chat site like this is for creating awareness. As this
+            the site is used by a large number of people you can use it to create awareness on various
+            topics.
+
+        </p>
+
+
+        <p>Here are some of the key features of the random chat site.</p>
+        <ul>
+            <li>Completely free for all the users.</li>
+            <li>No need to submit personal information for random chat and connect immediately with the random
+                person without membership</li>
+            <li>Share text, images, audio, and video while randomly chatting with strangers. Also all the
+                images,
+                videos,
+                and
+                audio you can be saved on your device.</li>
+            <li>All the messages and videos will be automatically deleted after a certain amount of time which
+                increase privacy and keep your device clean.</li>
+            <li>If you see someone try to do an advertisement or spam you can report it by pressing a single
+                button.
+            </li>
+            <li>
+                You can connect with users from different countries and backgrounds and talk about any topic.
+
+            </li>
+            <li>
+                We don't collect your data during a random chat or after the conversation is over on our
+                servers.
+
+            </li>
+
+            </li>
+            <li>
+                To make new friends: Random chat services provide an easy way to connect with people from around
+                the world and make new friends.
+
+            </li>
+            <li>
+                To practice language skills: By chatting with native speakers of a language, people can practice
+                their language skills and improve fluency.
+
+            </li>
+            <li>
+                To learn about other cultures: Random chat services can provide an opportunity to learn about
+                other cultures and gain a deeper understanding of the world.
+
+            </li>
+            <li>
+                To have fun: Some people simply use random chat services as a way to have fun and pass the time.
+
+            </li>
+            <li>
+                To get advice or help: Some people use random chat as a way to get advice or help on a specific
+                topic.
+
+            </li>
+            <li>You can use the random chat site in any language you want.</li>
+            <li>Enjoy random chat with men and women both.</li>
+
+        </ul>
+        <p>
+            Also, ChatWeber is a free service that you can use to talk with strangers right now. We create this
+            random chat site
+            so that people like you can meet friendly strangers and know more about them, their country, and
+            religion and make new friends.
+
+
+        </p>
+
+
+
+    </div>
+</div>
+
+
+
+
+<div class="introcard">
+    <div class="intocardheader">
+        <img loading="lazy" class="introimage" src="https://cdn-icons-png.flaticon.com/512/4860/4860889.png"
+            loading="lazy" alt="random chat">
+        <h2 class="introheading">
+            How to start a random chat?
+        </h2>
+    </div>
+    <div class="introtext">
+        <p>As a child we were told not to talk with the person whom we don't know but as we grow, it can be
+            rewarding to talk with strangers and become more social. Random chat with strangers can be hard at
+            first
+            but
+            there are some methods that you can use to start a conversation with a stranger and make strangers
+            your best friends.</p>
+        <ol>
+            <li>
+                Introduce yourself: Start by introducing yourself and asking the other person their name.
+
+            </li>
+            <li>
+                <b> Ask about their interests:</b> Ask the other person about their hobbies or interests to find
+                common ground.
+
+            </li>
+            <li>
+                <b> Share something about yourself: </b> Share a little bit about yourself and your interests to
+                give the other person something to respond to.
+
+            </li>
+            <li>
+                <b> Keep the conversation flowing:</b> Try to keep the conversation going by asking follow-up
+                questions and actively listening to the other person's responses.
+
+            </li>
+            <li>
+                <b> Be respectful:</b> Remember to be respectful of the other person's opinions and boundaries.
+
+            </li>
+            <li>
+                <b> Use ice-breakers: </b> use generic ice-breaker questions or statements to start the
+                conversation like: "How's your day going?", "What do you like to do in your free time?"
+
+            </li>
+            <li>
+                <b> Be open-minded: </b> Be open to the conversation take any direction and be willing to change
+                the
+                subject if needed.
+            </li>
+            <li><b>Start with small talks.</b> You should start with a small conversation with the stranger and
+                avoid making personal questions at the start of your conversation. Don't try to investigate
+                their sensitive information. You can try asking general questions or commenting about their
+                look in a positive manner. </li>
+            <li><b>Ask open-ended questions. </b> During a random chat you should try to ask open-minded
+                questions to the anonymous person. Try to keep the conversation light and casual as much as
+                possible because this will make the other user feel comfortable with you can you both can
+                continue the conversation for a longer time.</li>
+
+            <li><b>Ask them for an opinion. </b>You can the option on some topics as this will help you know and
+                understand the other person. If you find that the random person you are talking with has the
+                same
+                the opinion you can continue your conversation and give a chance to find the common ground.</li>
+        </ol>
+        <p>There are some of the best methods that you can use to start a friendly conversation with the
+            anonymous
+            users also get a chance to know them better and make them their new friends. Remember that random
+            chat can be unpredictable and sometimes it can be hard to find something to talk about but be
+            persistent and you can have an interesting conversation.
+
+
+
+        </p>
+    </div>
+</div> -->
+<!-- 
+<div class="introcard">
+    <div class="intocardheader">
+        <img loading="lazy" class="introimage" src="https://cdn-icons-png.flaticon.com/512/6119/6119582.png"
+            loading="lazy" alt="random chat">
+        <h2 class="introheading">
+            Record Conversation In Random Chat
+        </h2>
+    </div>
+    <div class="introtext">
+
+        <p>We have added the video record of all the conversations with the stranger in the random chat. You can
+            use this feature to record and download all the video conversations with the stranger in a random
+            chat.
+            Using this feature to record the random chat conversation is free and the video recording is also of
+            high
+            quality. Also, there is no watermark on the recorded video and you can record videos of any length
+            and
+            as
+            many times as you want to.
+        </p>
+        <p>To use the random chat video recording feature you have to follow the below-mentioned steps</p>
+        <ol>
+            <li>Connect with a random user and start a conversation with the stranger.</li>
+            <li>While you are chatting with the user you have to click on the record button present in the
+                middle of
+                the video play of the stranger.</li>
+            <li>When the video recording is completed, you have to click on the stop recording button.</li>
+            <li>After, this the recorded video will be added to the chat container and you can click on the
+                download
+                button to save the recorded video in the random chat to your device.</li>
+        </ol>
+
+        <p>
+            You can use the random chat recording feature only when you are chatting with the feature. The
+            quality
+            of the video depends on the quality of the webcam of the stranger to whom you are talking.
+
+        </p>
+        <p>
+            You can
+            also
+            use this feature to record misbehaviors on the site and provide them while reporting the span user.
+        </p>
+
+    </div>
+</div> -->
+
+
+<!-- 
+<div class="introcard">
+    <div class="intocardheader">
+        <img loading="lazy" class="introimage" src="https://cdn-icons-png.flaticon.com/512/4521/4521953.png"
+            loading="lazy" alt="random chat">
+        <h2 class="introheading">
+            Share Files In Random Chat
+        </h2>
+    </div>
+    <div class="introtext">
+        <p>
+
+            You can share the files like photos and videos while talking with a stranger. This feature is of
+            very
+            useful when you want to share files like your photos and video. File sharing on the site is
+            secure
+            as there is no third party involved in the transfer of the file.
+
+        </p>
+        <p>
+            We don't store or access any file that
+            you
+            share with the other person on the site.
+
+        </p>
+        <p>
+            The transfer of files takes place using a peer-to-peer
+            connection. By using a Peer to Peer connection you can transfer the files from your device to the
+            other
+            device directly and without involving a server for the transfer of the file.
+
+        </p>
+        <p>
+            It is recommended that sharing of the files like your personal photographs, video, credit or debit
+            card
+            information, banking information phone numbers, etc. should be avoided during a random chat. Any
+            damage
+            caused by the
+            sharing
+            of this information with the other user to you will be your responsibility.
+
+        </p>
+    </div>
+</div> -->
+
+<!-- 
+   <div class="sharediv">
+    <img src="https://cdn-icons-png.flaticon.com/256/8623/8623918.png">
+    <div>
+        <button onclick="sharesitewithfrinds()">
+            Invite Your Friends!
+        </button>
+    </div>
+    <p>
+           Hey, share this platform with your friends who might also like to meet new people, have fun conversations and make this community even bigger.
+    </p>
+
+</div>
+
+
+
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="theme-color" id="themecolor" content="black">
+    <title>Friends List</title>
+    <link rel="stylesheet" href="/chat/index.css">
+    <script src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/chat/index.css">
+    <link rel="icon"
+        href="/sitelogo.png"
+        type="image/icon type">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="propeller" content="186f07e537b5228e19a815edbd47f25b">
+    <script>
+        var userid = "{{{userid}}}"
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3DZ6B36FDP"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-3DZ6B36FDP');
+    </script>
+
+</head>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Jost:wght@200; 300;400&display=swap');
+    @import url(https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap);
+    @import url(https://fonts.googleapis.com/css2?family=Josefin+Slab:wght@300&display=swap);
+    @import url(https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400&display=swap);
+    @import url(https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap);
+
+    body {
+        margin: 0
+    }
+
+    .radiobutton {
+        position: absolute;
+        top: -1000000px
+    }
+
+    .sitetitleconatiner {
+        display: flex;
+        top: 0;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #f5f5f5;
+        width: 100%;
+        height: 50px;
+        position: fixed;
+        background-color: #fff;
+        box-shadow: #fd94ff33 0 2px 8px 0
+    }
+
+    .sitetitle {
+        font-family: 'Cinzel Decorative', cursive;
+        margin-left: 10px;
+        font-size: 18px;
+        margin-top: 5px;
+        font-weight: 800;
+        background-color: #000;
+        background-clip: border-box;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-size: 300%;
+        background-clip: border-box;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: animated_text 10s ease-in-out infinite;
+        -moz-animation: animated_text 10s ease-in-out infinite;
+        -webkit-animation: animated_text 10s ease-in-out infinite
+    }
+
+    .sitelogo {
+       width: 24px;
+    height: 24px;
+    margin-top: 4px;
+    margin-right: -4px;
+    object-fit: cover;
+    }
+
+    .newuserconnectedtext {
+        font-size: 11px;
+        padding: 5px;
+        padding-left: 15px;
+        background-color: #ffebfb;
+        padding-right: 15px;
+        border-radius: 30px;
+        display: inline-block;
+        margin-top: 17px
+    }
+
+    .siteslogan {
+        font-size: 9px;
+        margin-top: -3px;
+        margin-left: 4px;
+        font-weight: 700;
+        display: block;
+        color: gray;
+        background: linear-gradient(8deg, rgb(10 10 10) 0, rgb(0 0 0) 100%);
+        background-clip: border-box;
+        -webkit-background-clip: text;
+        font-family: 'Cinzel Decorative', cursive;
+        -webkit-text-fill-color: transparent
+    }
+
+    .sitemotocinatiner {
+        display: block;
+        width: 100%;
+        text-align: center;
+        font-family: Jost, sans-serif
+    }
+
+    h1 {
+        font: bolder;
+        color: #000;
+        font-family: 'Cinzel Decorative', cursive
+    }
+
+
+
+    .siteheadermhomebutton {
+        height: auto;
+        font-size: 15px;
+        left: 5px;
+        position: absolute;
+        color: #707070;
+        background-color: #fafafa;
+        padding: 14px;
+        border-radius: 30px;
+        border: none;
+        padding-left: 15px;
+        padding-right: 16px
+    }
+
+
+    a {
+        display: contents
+    }
+
+
+
+
+    p {
+        font-size: 12px;
+        margin: 0;
+        padding: 0;
+        font-family: Jost, sans-serif
+    }
+
+    .toolbuttoncontainer {
+        width: 100%;
+        height: 40px;
+        border-radius: 12px;
+        margin-top: 6px;
+        margin-bottom: -47px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transform: translateY(-47px)
+    }
+
+
+    .toolbuttons:hover {
+        background-color: #fff;
+        color: #000
+    }
+
+    .age {
+        font-size: 10px
+    }
+
+    .userinfocarddiv {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+        justify-content: space-between;
+        font-family: 'Cinzel Decorative', cursive
+    }
+
+    .maindivconatiner {
+        width: 60%;
+        padding: 15px;
+        padding-bottom: 5px;
+        margin: auto;
+            border: 2px solid #ebebeba1;
+
+    }
+
+    .usernameandonlinestatus {
+        margin-left: 15px;
+        display: inline-block;
+        width: 40%;
+        font-family: 'Cinzel Decorative', cursive
+    }
+
+    .inviteforpmbuttonconatiner {
+        display: inline-flex;
+        align-items: center;
+        justify-content: right;
+        width: 50%;
+        font-family: 'Cinzel Decorative', cursive
+    }
+
+    .onlinestatus {
+        display: block;
+        font-family: Jost, sans-serif;
+        font-size: 13px
+    }
+
+    .inviteusertochatroombutton {
+        background-color: #f07;
+        color: #fff;
+        font-family: Jost, sans-serif;
+        border: none;
+        font-size: 14px;
+        border-radius: 5px;
+        margin-right: 15px;
+        padding: 10px;
+        padding-left: 25px;
+        padding-right: 25px;
+        height: 40px;
+    }
+
+    .onlineorofflinestatus {
+        font-size: 12px;
+        font-weight: 500
+    }
+
+    .usernameandonlinestatusparagraph {
+        font-size: 15px;
+        font-family: Jost, sans-serif;
+        font-weight: 800
+    }
+
+    .useraddedtimep {
+        font-size: 12px;
+        font-family: Jost, sans-serif;
+        color: gray;
+        font-weight: 600
+    }
+
+    .username {
+        display: block;
+        width: 100%
+    }
+
+    .colrceonthemiddlefornlineadnoffline {
+        margin-left: 5px;
+        margin-right: 5px
+    }
+
+    .frindslistimgmain {
+        width: 150px;
+        height: 150px;
+        margin-top: 50px;
+        margin-bottom: -23px;
+        display: inline-block;
+    }
+
+    .freindsinstruction {
+        display: inline-block;
+    }
+
+    .deleteauserfromfrindslist {
+        border: none;
+        background-color: rgb(238, 238, 238);
+        margin: 0px;
+        padding: 5px;
+        padding-left: 6px;
+        border-radius: 20px;
+        padding-right: 6px;
+        margin-left: 8px;
+        margin-right: -4px;
+        font-size: 11px;
+        color: rgb(77, 77, 77);
+    }
+
+    .freinddrequestrecivedconatiner{
+        display: block;
+        width: 100%;
+        position: fixed;
+        bottom: 0%;
+    }
+
+    .roomchatinfocard{
+        position: fixed;
+        bottom: 0%;
+    }
+
+.topdivcontainer{
+    margin-bottom: 70px;
+}
+
+.frindlistinstruction {
+    font-size: 15px;
+    text-align: center;
+    margin: 10px;
+    margin-bottom: 29px;
+}
+    @media only screen and (max-width:800px) {
+        .frindlistinstruction{
+            font-size: 12px;
+            margin-top: 4px;
+            margin-bottom: 10px;
+                margin-bottom: 10px;
+
+        }
+
+.topdivcontainer{
+    margin-bottom: 63px;
+}
+
+        .maindivconatiner {
+            margin: auto;
+            width: 88%;
+            padding-top: 14px;
+            border-radius: 10px;
+            border: 2px solid #ebebeba1;
+        }
+
+        .inviteforpmbuttonconatiner {
+            width: 35%
+        }
+
+        .usernameandonlinestatus {
+            width: 56%
+        }
+
+        .useraddedtimep {
+            font-size: 10px
+        }
+
+        .usernameandonlinestatusparagraph {
+            font-size: 13px
+        }
+
+
+        .inviteusertochatroombutton {
+            background-color: #f07;
+            color: #fff;
+            font-family: Jost, sans-serif;
+            border: none;
+            font-size: 12px;
+            border-radius: 5px;
+            margin-right: 15px;
+            padding: 10px;
+            padding-left: 18px;
+            padding-right: 11px;
+            height: 32px;
+            padding-top: 7px;
+        }
+
+
+
+        .userinfocarddiv {
+            width: 100%
+        }
+
+        .roomchatinfocard {
+            width: 100%
+        }
+
+    }
+
+    .roomchatinfocard{
+        position: fixed;
+        bottom: 0px;
+    }
+</style>
+<style>
+      .frindrequetstdescription {
+        font-size: 10px;
+        margin-top: 5px;
+        margin-left: 22px;
+        margin-right: 22px;
+        font-weight: 500;
+    }
+
+    .frindsrequestrecivedheading {
+        font-family: 'Cinzel Decorative', cursive;
+        font-size: 13px;
+        font-weight: 900;
+
+    }
+
+    .chatrequestconatinerdiv {
+        width: 100%;
+        position: fixed;
+        bottom: 0%;
+        margin: 0%;
+    }
+
+    .chatinvitationimage {
+        width: 70px;
+        height: 70px;
+        padding-top: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+        margin-top: -40px;
+        background-color: white;
+        border-radius: 100px 100px 0px 0px;
+
+    }
+
+    .chatrequestconatntdiv {
+        display: block;
+        border-radius: 25px 25px 0px 0px;
+        margin: auto;
+        text-align: center;
+        padding-bottom: 5px;
+        width: 60%;
+        height: 160px;
+        background-color: white;
+        box-shadow: #ffd8eb 0 1px 25px;
+            bottom: 0px;
+
+    }
+
+    .frindsrequestchatbuttons {
+        font-family: Jost, sans-serif;
+        background-color: #ff0d86;
+        border: 2px solid hotpink;
+        color: white;
+        padding: 5px;
+        margin: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        border-radius: 30px;
+        box-shadow: #ff69b4 0 1px 25px;
+
+    }
+
+    .rejectuserrequest{
+            font-family: Jost, sans-serif;
+    background-color: white;
+    border: 2px solid rgb(255, 11, 133);
+    color: rgb(255, 0, 128);
+    padding: 4px;
+    margin: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 30px;
+    box-shadow: none;
+        
+    }
+
+.roomchatinfocard {
+    position: fixed;
+    bottom: 0px;
+    display: block;
+    width: 100%;
+}
+
+.chatrequestconatntdiv {
+    width: 70%;
+    display: block;
+    margin: auto;
+}
+
+
+.frindsrequestrecivedheading{
+    font-size: 17px;
+}
+
+.frindrequetstdescription{
+    font-size: 15px;
+    width: 95%;
+    
+}
+
+.frindsrequestchatbuttons :nth-child(1){
+    font-family: Jost, sans-serif;
+    background-color: #ffffff;
+    border: 2px solid hotpink;
+    color: #ff0d86;
+    padding: 9px;
+    font-size: 17px;
+    margin: 19px;
+    padding-left: 34px;
+    padding-right: 37px;
+    border-radius: 30px;
+    box-shadow: #ff69b4 0 1px 25px;
+    padding: 6px 26px;
+}
+
+.frindsrequestchatbuttons :nth-child(2){
+    font-family: Jost, sans-serif;
+    background-color: #ff0d86;
+    border: 2px solid hotpink;
+    color: white;
+    padding: 9px;
+    font-size: 17px;
+    margin: 19px;
+    padding-left: 34px;
+    padding-right: 37px;
+    border-radius: 30px;
+    box-shadow: #ff69b4 0 1px 25px;
+    padding: 6px 26px;
+}
+
+    @media only screen and (max-width:800px) {
+              .frindsrequestchatbuttons:nth-child(1) {
+    font-family: Jost, sans-serif;
+    background-color: #ffffff;
+    border: 2px solid hotpink;
+    color: #ff0d86;
+    padding: 5px;
+    margin: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 30px;
+    box-shadow: #ff69b4 0 1px 25px;
+}
+
+        .frindsrequestchatbuttons:nth-child(2) {
+    font-family: Jost, sans-serif;
+    background-color: #ff0d86;
+    border: 2px solid hotpink;
+    color: white;
+    padding: 5px;
+    margin: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 30px;
+    box-shadow: #ff69b4 0 1px 25px;
+}
+
+        .mychatimage {
+            margin-right: 9px;
+        }
+
+        .chatrequestconatntdiv {
+            width: 100%;
+            bottom: 0px;
+        }
+
+.chatrequestconatntdiv {
+    width: 100%;
+    display: block;
+    margin: auto;
+}
+
+.frindsrequestrecivedheading{
+    font-size: 13px;
+}
+
+.frindrequetstdescription{
+font-size: 12px;
+    width: 95%;
+    margin: 10px auto 3px auto;
+    
+}
+    }
+</style>
+
+<div class="topdivcontainer">
+    <div class="sitetitleconatiner">
+        <span onclick="window.location = '/'" class="fa siteheadermhomebutton fa-chevron-left "></span>
+        <span onclick="addaquestiontochat(this)" class="fa sharesitechatageicon fa-question"
+            style="display: none;"></span>
+        <a href="/">
+            <img src="/sitelogo.png"
+                class="sitelogo" alt="Site logo">
+        </a>
+        <a href="/">
+            <span class="sitetitle">ChatWeber
+                {{!-- <span class="siteslogan">Talk With Strangers</span> --}}
+            </span>
+        </a>
+    </div>
+</div>
+<center>
+    <img src="https://cdn-icons-png.flaticon.com/256/7138/7138235.png" alt="friends" width="120px" height="120" srcset="">
+</center>
+<p class="frindlistinstruction">
+All your friends are listed below. You can wait here and when someone is online you can invite them for a chat.
+
+
+</p>
+
+<div class="maindivconatiner" id="alluserinfoconatinerdiv">
+
+
+</div>
+
+   <div class="roomchatinfocard" id="freinddrequestrecivedconatiner">
+             
+        </div>
+<script>
+    var socket = io()
+    var friendlist = JSON.parse(localStorage.getItem("friends"))
+
+    friendlist.forEach((userdata, index) => {
+        if (userdata != null || undefined) {
+
+            socket.emit("checkwehteruseridonlineornot", userdata.userid, userdata.username, userdata.timeadded, index)
+        }
+    })
+
+    setInterval(()=>{
+        document.getElementById("alluserinfoconatinerdiv").innerHTML = ""
+            friendlist.forEach((userdata, index) => {
+        if (userdata != null || undefined) {
+
+            socket.emit("checkwehteruseridonlineornot", userdata.userid, userdata.username, userdata.timeadded, index)
+        }
+    })
+    },20000)
+
+
+
+     socket.on("userinvitedyou", (newroomid, userid) => {
+        navigator.vibrate(200)
+        document.getElementById("alluserinfoconatinerdiv").style.filter = "blur(3px) brightness(0.9)"
+
+var nameoftheserinivted = "Stranger"
+var arrayfromthesavedfrinds = JSON.parse(localStorage.getItem("friends"))
+
+for (var i = 0; i <= arrayfromthesavedfrinds.length; i++) {
+    if (arrayfromthesavedfrinds[i] != null || undefined) {
+        if (arrayfromthesavedfrinds[i].userid == userid) {
+            nameoftheserinivted = arrayfromthesavedfrinds[i].username
+        }
+    }
+}
+
+
+var friendsrequestcontainerdiv = document.getElementById("freinddrequestrecivedconatiner")
+var span = document.createElement("span")
+span.innerHTML = `
+
+    <div class="chatrequestconatntdiv" id="userchatinvitepormpt">
+<img class="chatinvitationimage" src="https://cdn-icons-png.flaticon.com/256/7880/7880162.png">
+<br>
+<span class="frindsrequestrecivedheading">${nameoftheserinivted} Invited For Chat</span>
+
+<p class="frindrequetstdescription">
+ One of your friends invited you to join the chat. You can accept the chat request to join the conversation in a new tab.
+    </p>
+<div class="frindsrequestbuttonconaterdiv">
+
+    <form action="/chat/private" method="post">
+        <input type="text" name="username" style="display: none;" value="${nameoftheserinivted}">
+        <input type="text" name="privateroomid" style="display: none;" value="${newroomid}">
+    <button type="button" onclick="userrejectedfrindrequest('${newroomid}')" class="frindsrequestchatbuttons rejectuserrequest">Reject</button>
+    <button type="submit" class="frindsrequestchatbuttons">Accept</button>
+
+    </form>
+
+</div>
+</div>
+
+
+`
+friendsrequestcontainerdiv.append(span)
+
+
+})
+
+
+
+
+    socket.on("useridcrerenltyoffline", (username, usertimeadded, index) => {
+        var allmessagecontainer = document.getElementById("alluserinfoconatinerdiv")
+        var span = document.createElement("span")
+        span.innerHTML = `
+        <div class="userinfocarddiv" id="friend${index}">
+        <button class="deleteauserfromfrindslist fa fa-times" onclick="deleteauserfromlist('${index}')"></button>
+        <div class="usernameandonlinestatus">
+
+            <p class="usernameandonlinestatusparagraph">${username}<span style="color: red;"
+                    class="onlineorofflinestatus"><span class="colrceonthemiddlefornlineadnoffline">Offline</span></span>
+            </p>
+            <p class="useraddedtimep">Added ${timeSince(usertimeadded)} ago</p>
+        </div>
+        <div class="inviteforpmbuttonconatiner">
+        </div>
+    </div>
+    `
+        allmessagecontainer.append(span)
+
+    })
+
+    socket.on("useriscurrenltonline", (username, usertimeadded, userscoketid, newroomid, userid, index) => {
+
+        var nameoftheserinivted = "Stranger"
+        var arrayfromthesavedfrinds = JSON.parse(localStorage.getItem("friends"))
+
+        for (var i = 0; i <= arrayfromthesavedfrinds.length; i++) {
+            if (arrayfromthesavedfrinds[i] != null || undefined) {
+                if (arrayfromthesavedfrinds[i].userid == userid) {
+                    nameoftheserinivted = arrayfromthesavedfrinds[i].username
+                }
+            }
+        }
+
+
+        var allmessagecontainer = document.getElementById("alluserinfoconatinerdiv")
+        var span = document.createElement("span")
+        span.innerHTML = `
+
+        <div class="userinfocarddiv" id="friend${index}">
+        <button class="deleteauserfromfrindslist fa fa-times" onclick="deleteauserfromlist('${index}')"></button>
+        <div class="usernameandonlinestatus">
+
+            <p class="usernameandonlinestatusparagraph">${username}<span style="color: #0fff0f;"
+                    class="onlineorofflinestatus"><span class="colrceonthemiddlefornlineadnoffline">Online</span></span>
+            </p>
+            <p class="useraddedtimep">Added ${timeSince(usertimeadded)} ago</p>
+        </div>
+        <div class="inviteforpmbuttonconatiner">
+
+            <form action="/chat/private" method="post">
+                <input type="text" name="username" style="display: none;" value="${nameoftheserinivted}">
+
+                <input type="text" name="privateroomid" style="display: none;" value="${newroomid}">
+                <button class="inviteusertochatroombutton" type="submit"
+                    onclick="inviteusertojointheprivateroom(this, '${userscoketid}','${newroomid}')">
+                    Invite<span class="fa fa-paper-plane" style="margin-left: 6px;"></span>
+                </button>
+            </form>
+        </div>
+    </div>
+    `
+        allmessagecontainer.append(span)
+    })
+
+
+
+
+
+
+
+
+
+    function userrejectedfrindrequest(roomid) {
+        document.getElementById("alluserinfoconatinerdiv").style.filter = "blur(0px) brightness(1)"
+document.getElementById("freinddrequestrecivedconatiner").innerHTML = ""
+
+        socket.emit("userrejectedfreindsrequest", roomid)
+    }
+
+    //  socket.on("useridcurrentlybussyinpriatechat", (username, usertimeadded) => {
+
+    //         var allmessagecontainer = document.getElementById("alluserinfoconatinerdiv")
+    //         var span = document.createElement("span")
+    //         span.innerHTML = `
+    //     <div class="userinfocarddiv">
+    //     <div class="usernameandonlinestatus">
+    //         <p class="usernameandonlinestatusparagraph"><span class="usernamespan">${username}</span><span style="color: #ff8000;" class="onlineorofflinestatus"><span class="colrceonthemiddlefornlineadnoffline">Busy</span></span></p>
+    //         <p class="useraddedtimep">Added ${timeSince(usertimeadded) } ago</p>
+    //     </div>
+    //     <div class="inviteforpmbuttonconatiner">
+    //         <button class="inviteusertochatroombutton" style="display: none;" >
+    //             Invite<span class="fa fa-paper-plane" style="margin-left: 6px;" onclick="inviteusertojointheprivateroom(this)"></span>
+    //         </button>
+    //     </div>
+    // </div>
+    //     `
+    //         allmessagecontainer.append(span)
+
+    //     }) 
+
+
+    function deleteauserfromlist(index) {
+
+        var conformation = confirm("You want remove this user?")
+        if (conformation) {
+            var myfriends = JSON.parse(localStorage.getItem("friends"))
+            myfriends[index] = null
+            localStorage.setItem("friends", JSON.stringify(myfriends))
+            document.getElementById(`friend${index}`).remove()
+
+
+        }
+    }
+
+    function inviteusertojointheprivateroom(element, userscoketid, newroomid) {
+        socket.emit("sendaltertouser", userscoketid, newroomid, userid)
+    }
+
+
+
+    // alert("A user invite you to chat with him")
+
+
+
+    function timeSince(date) {
+
+        var seconds = Math.floor((new Date() - date) / 1000);
+
+        var interval = seconds / 31536000;
+
+        if (interval > 1) {
+            return Math.floor(interval) + " years";
+        }
+        interval = seconds / 2592000;
+        if (interval > 1) {
+            return Math.floor(interval) + " months";
+        }
+        interval = seconds / 86400;
+        if (interval > 1) {
+            return Math.floor(interval) + " days";
+        }
+        interval = seconds / 3600;
+        if (interval > 1) {
+            return Math.floor(interval) + " hours";
+        }
+        interval = seconds / 60;
+        if (interval > 1) {
+            return Math.floor(interval) + " minutes";
+        }
+        return Math.floor(seconds) + " seconds";
+    }
+
+    socket.emit("addusertoonlineuserarray", userid)
+
+
+
+</script>
+<script>
+    function sharesitewithfrinds(){
+        navigator.share({
+            title: "Talk To Strangers",
+            url: "https://chatweber.com"
+        })
+    }
+</script>
+<style>
+    @media (max-width:800px){
+        .inviteforpmbuttonconatiner {
+    width: 119px;
+    margin-right: -14px;
+}
+    }
+</style>
+<script>
+    history.pushState(null, null, location.href);
+window.onpopstate = function () {
+    history.go(1);
+};
+</script>
+
+<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+<script>
+  window.OneSignal = window.OneSignal || [];
+  OneSignal.push(function() {
+    OneSignal.init({
+      appId: "a454cd58-c170-4c5a-88e1-521bc0b3a1e3",
+    });
+  });
+</script>
+</body>
+
+</html>

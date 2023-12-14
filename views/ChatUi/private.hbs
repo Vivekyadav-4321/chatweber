@@ -1,0 +1,3233 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="theme-color" id="themecolor" content="black">
+    <title>Private Chat</title>
+    <script src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="icon"
+        href="/sitelogo.png"
+        type="image/icon type">
+
+    <link rel="manifest" href="/manifest.json">
+ 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3DZ6B36FDP"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-3DZ6B36FDP');
+    </script>
+    <script>
+        const userid = "{{{userid}}}"
+        const chattingusername = "{{{username}}}"
+    </script>
+   </head>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Jost:wght@200; 300;400&display=swap');
+    @import url(https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap);
+    @import url(https://fonts.googleapis.com/css2?family=Josefin+Slab:wght@300&display=swap);
+    @import url(https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400&display=swap);
+    @import url(https://fonts.googleapis.com/css2?family=Cinzel+Decorative&display=swap);
+
+     body {
+        margin: 0
+    }
+
+    .radiobutton {
+        position: absolute;
+        top: -1000000px
+    }
+
+    .sitetitleconatiner {
+        display: flex;
+        top: 0px;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 15px;
+        border-bottom: 1px solid #f5f5f5;
+        width: 100%;
+    box-shadow: #fd94ff33 0px 2px 8px 0px;
+        height: 50px;
+        position: absolute;
+        background-color: #fff;
+    }
+
+    .addtohomecsreeenh3 {
+        font-family: 'Cinzel Decorative', cursive;
+        font-size: 11px;
+        margin-top: 4px;
+        margin-bottom: 0
+    }
+
+    #afterchatstartinstructions p {
+        font-family: 'Cinzel Decorative', cursive;
+        font-size: 15px;
+        font-weight: 700;
+        text-align: center
+    }
+
+
+
+    #afterchatstartinstructions {
+        text-align: center;
+        border: 2px solid #f8f8f8;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        border-radius: 15px
+    }
+
+    .addtohomescreendescription {
+        font-size: 11px;
+        margin-left: 15px;
+        margin-right: 15px;
+        margin-top: 4px;
+        margin-bottom: 4px
+    }
+
+    .sitetitle {
+        font-family: 'Cinzel Decorative', cursive;
+        margin-left: 10px;
+        font-size: 18px;
+        margin-top: 5px;
+        font-weight: 800;
+        background-color: #000;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-size: 300%;
+        background-clip: border-box;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: animated_text 10s ease-in-out infinite;
+        -moz-animation: animated_text 10s ease-in-out infinite;
+        -webkit-animation: animated_text 10s ease-in-out infinite
+    }
+
+    .sitelogo {
+     width: 24px;
+    height: 24px;
+    margin-top: 4px;
+    margin-right: -4px;
+    object-fit: cover;
+    }
+
+    .newuserconnectedtext {
+        font-size: 11px;
+        padding: 5px;
+        padding-left: 15px;
+        background-color: #ffebfb;
+        padding-right: 15px;
+        border-radius: 30px;
+        display: inline-block;
+        margin-top: 17px
+    }
+
+    .siteslogan {
+        font-size: 9px;
+        margin-top: -3px;
+        margin-left: 4px;
+        font-weight: 700;
+        display: block;
+        color: gray;
+        background: linear-gradient(8deg, rgb(10 10 10) 0, rgb(0 0 0) 100%);
+        background-clip: border-box;
+        -webkit-background-clip: text;
+        font-family: 'Cinzel Decorative', cursive;
+        -webkit-text-fill-color: transparent
+    }
+
+    .sitemotocinatiner {
+        display: block;
+        width: 100%;
+        text-align: center;
+        font-family: Jost, sans-serif
+    }
+
+    h1 {
+        font: bolder;
+        color: #000;
+        font-family: 'Cinzel Decorative', cursive
+    }
+
+    .talktostangerh1 {
+        font-size: 25px;
+        margin-top: -15px;
+        margin-bottom: 0;
+        word-spacing: 4px;
+        letter-spacing: 1px
+    }
+
+    .allmessages {
+        height: 490px;
+        border: 1px solid #ededed;
+        border-top: none;
+
+    }
+
+    .maincontainer {
+        height: auto;
+        overflow: visible;
+        width: 100%;
+        margin-top: -28px;
+        border-radius: 12px
+    }
+
+    .maindiv {
+        display: block;
+        background-color: transparent;
+        margin: auto;
+        margin-top: 79px;
+        width: 100%
+    }
+
+    .inviteotheriserbutton {
+        background-color: #000;
+        color: rgb(255 255 255);
+        box-shadow: #818181 0 1px 25px;
+        border: 1px solid rgb(181 181 181)
+    }
+
+    .siteheadermhomebutton {
+        height: auto;
+        left: 5px;
+        position: absolute;
+        color: #707070;
+        background-color: #fafafa;
+        padding: 14px;
+        border-radius: 30px;
+        border: none;
+        padding-left: 15px;
+        padding-right: 16px
+    }
+
+    .messagelikebutton {
+        background-color: #fff;
+        border: none;
+        margin: 0;
+        font-size: 11px
+    }
+
+    .mymessageoptionmaindiv,
+    .mymessageoptionmainimagediv,
+    .strangeruseroptionmaindiv,
+    .strnegerimagedivoptions {
+        background-color: #fff;
+        height: 29px;
+        border: 1px solid #e3e3e3;
+        right: 0;
+        font-size: 12px;
+        color: #2a2a2a;
+        display: none;
+        margin-top: 8px;
+        min-width: auto;
+        max-width: 80px;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+        padding-top: 3px;
+        border-radius: 32px;
+        padding-right: 15px
+    }
+
+    .strangeruseroptionmaindiv,
+    .strnegerimagedivoptions {
+        max-width: 108px;
+        margin-left: 10px;
+        padding-bottom: 0
+    }
+
+    .strnegerimagedivoptions {
+        max-width: 95px;
+        padding-bottom: 4px;
+        padding-right: 7px
+    }
+
+    .mymessageoptionmaindiv,
+    .mymessageoptionmainimagediv {
+        margin-right: 10px;
+        padding-bottom: 0;
+        padding-left: 10px
+    }
+
+    .mymessageoptionmainimagediv {
+        max-width: 42px
+    }
+
+    .mychatoprionbutton,
+    .strngermessagechatoprionbutton {
+        display: inline;
+        margin: 0;
+        margin-left: 10px
+    }
+
+    .mymessagelikecounter {
+        font-size: 10px
+    }
+
+    .mymessagelikeheart {
+        font-size: 10px;
+        margin-left: 1px;
+        color: red
+    }
+
+    .mymessagelikeicon {
+        margin-right: -4px
+    }
+
+    .strangermessagelikediv {
+        display: inline-block;
+        margin-left: 10px
+    }
+
+    .randomuserprofilecicle {
+        background: #5794ff;
+        height: 20px;
+        width: 20px;
+        border-radius: 50px;
+        margin-top: 4px
+    }
+
+    .fa-clone {
+        font-size: 10px;
+        margin-bottom: 2px;
+        font-weight: bolder
+    }
+
+    .sharesitechatageicon {
+        height: auto;
+        font-size: 15px;
+        right: 3px;
+        position: absolute;
+        color: #707070;
+        background-color: #fafafa;
+        padding: 14px;
+        border-radius: 30px;
+        border: none;
+        padding-left: 15px;
+        padding-right: 12px
+    }
+
+    .fa-times {
+        padding-right: 1px;
+        padding-left: 1px
+    }
+
+    a {
+        display: contents
+    }
+
+    .chatimages {
+        min-width: 254px;
+        max-width: 160px;
+        margin-left: 10px;
+        box-shadow: #e7e7e7 0 1px 25px;
+        margin-left: 6px;
+        margin-right: 8px;
+        margin-top: 0;
+        border-radius: 15px;
+        object-fit: cover
+    }
+
+    .reconnectandfilecontainer {
+        display: inline-block;
+        width: 100px;
+        position: relative;
+        margin-right: -85px
+    }
+
+    .reconnectbutton {
+        font-size: 16px;
+        background-color: #fff;
+        margin-left: 5px;
+        border: none;
+        border-radius: 30px;
+        padding-right: 10px
+    }
+
+    .filesharebutton {
+        transform: translateX(45px);
+        color: gray;
+        background-color: transparent;
+        border: none;
+        position: relative;
+        font-size: 16px;
+        margin-left: 10px
+    }
+
+    .chatrecordicon {
+        background: 0 0;
+        border: none;
+        font-size: 17px;
+        color: gray;
+        margin-left: -45px;
+        margin-right: 20px
+    }
+
+    .messagetextfiledcontainer {
+        margin-top: 9px;
+        display: block;
+        text-align: center;
+        padding-top: 15px;
+        margin-bottom: 4px;
+        padding-bottom: 15px;
+    border-top: 1px solid #e5e5e5;
+    }
+
+    .inputagifspan {
+        display: inline-block;
+        margin: -20px
+    }
+
+    .messageinput {
+        width: calc(100vw - 68vw);
+        height: 40px;
+        font-family: Jost, sans-serif;
+        font-size: 15px;
+        padding-left: 79px;
+        padding-right: 40px;
+        outline: 0;
+        border-radius: 30px;
+        margin-left: -30px;
+        margin-right: 10px;
+        border: none;
+        background-color: #e6e6e6b3
+    }
+
+    .reconnectandfilecontainer {
+        display: inline-block;
+        position: initial
+    }
+
+    .messageimagebutton input[type=file] {
+        position: absolute;
+        top: -10000px
+    }
+
+    .sitetitleconatiner {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 15px
+    }
+
+    .sitetitle {
+        font-family: 'Cinzel Decorative', cursive;
+        margin-left: 10px;
+        font-size: 18px;
+        margin-top: 5px;
+        font-weight: 800;
+        background: black;
+        background-clip: border-box;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-size: 300%;
+        background-clip: border-box;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: animated_text 10s ease-in-out infinite;
+        -moz-animation: animated_text 10s ease-in-out infinite;
+        -webkit-animation: animated_text 10s ease-in-out infinite
+    }
+
+    .chatyoutubevideo,
+    .mychatyoutubevideo {
+      margin-left: 5px;
+    max-width: 245px;
+    margin-right: -15px;
+    border-radius: 18px;
+    box-shadow: 0 0 2rem rgb(201 201 201 / 42%), 0 1rem 1rem -1rem rgb(0 0 0 / 15%);
+    }
+
+
+
+
+    .siteslogan {
+        font-size: 10px;
+        margin-top: -3px;
+        margin-left: 4px;
+        font-weight: 500;
+        display: block;
+        color: gray;
+        background: linear-gradient(8deg, rgb(10 10 10) 0, rgb(0 0 0) 100%);
+        background-clip: border-box;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent
+    }
+
+    .newuserconnectedtext,
+    .waitingtoconnect {
+        font-size: 11px;
+        padding: 5px;
+        padding-left: 15px;
+        padding-right: 15px;
+        border-radius: 30px;
+        display: inline-block;
+        margin-top: 9px;
+        margin-bottom: 8px
+    }
+
+    .tmessage {
+        margin: 0;
+        text-align: center
+    }
+
+    .waitingtoconnect {
+        color: #ff9500;
+        background-color: #ffe7b7
+    }
+
+    .connectedspan {
+        background-color: #dfd
+    }
+
+    .disconnectedspan {
+        background-color: #ffe6d0
+    }
+
+    .headercontainer {
+        align-items: center
+    }
+
+    .randomuserinfo {
+        margin-left: 0
+    }
+
+    .mainvideocontainer {
+        width: 60%;
+        margin: auto
+    }
+
+    .randomuservideo {
+        width: 100%;
+        height: 300px;
+        object-fit: cover;
+        margin: 0;
+        border-radius: 14px 14px 0 0
+    }
+
+    .myvideo {
+        position: absolute;
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        background: #fff;
+        object-fit: cover;
+        border-radius: 10px;
+        padding: 2px;
+        margin-top: -40px;
+        transform: translateY(38px) translateX(-1px)
+    }
+
+    p {
+        font-size: 12px;
+        margin: 0;
+        padding: 0;
+        font-family: Jost, sans-serif
+    }
+
+    .toolbuttoncontainer {
+        width: 100%;
+        height: 40px;
+        border-radius: 12px;
+        margin-top: 6px;
+        margin-bottom: -47px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transform: translateY(-47px)
+    }
+
+    .material-icons {
+        margin: 0;
+        color: #595858;
+        font-size: 15px;
+        padding: 0;
+        border: none
+    }
+
+    .toolbuttons {
+        margin: 4px;
+        padding: 9px;
+        font-size: 13px;
+        color: #fffbfb;
+        padding-bottom: 9px;
+        cursor: pointer;
+        border-radius: 30px;
+        background: #ffffff14;
+        border: none
+    }
+
+    .toolbuttons:hover {
+        background-color: #fff;
+        color: #000
+    }
+
+    .age {
+        font-size: 10px
+    }
+
+    .moreaboutheroombutton,
+    .sendmessagebutton,
+    .strangeruserimageoptions {
+        font-size: 15px;
+        border: none;
+        background-color: #fff;
+        color: rgb(80 80 80);
+        border-radius: 30px;
+        padding-left: 10px;
+        margin-left: 10px
+    }
+
+    .strangeruserimageoptions {
+        padding: 11px;
+        font-size: 12px;
+        border: none;
+        background-color: #fafafa;
+        color: rgb(80 80 80);
+        border-radius: 30px;
+        margin-right: 5px;
+        padding-right: 14px;
+        padding-left: 14px
+    }
+
+    .strangerchatimageoption {
+        width: 70%;
+        display: flex;
+        justify-content: center
+    }
+
+    .moreaboutheroombutton {
+        padding: 16px;
+        font-size: 13px;
+        padding-right: 16px;
+        padding-left: 16px;
+        margin-right: -17px
+    }
+
+    .connectionstatus {
+        display: block;
+        font-size: 11px;
+        width: 60%;
+        background: #b9b9b94f;
+        margin: auto;
+        text-align: center;
+        color: #fff;
+        padding: 2px;
+        padding-left: 11px;
+        padding-right: 8px;
+        transform: translateY(-33px);
+        border-radius: 10px;
+        margin-bottom: -23px
+    }
+
+    .randomusername {
+        font-size: 12px;
+        font-weight: 900
+    }
+
+    .toolbuttonabboveline {
+        width: 80%;
+        height: 2px;
+        border: none;
+        background: #ff6200;
+        background: linear-gradient(151deg, rgba(255, 98, 0, 1) 0, rgba(255, 171, 0, 1) 48%, rgba(255, 0, 0, 1) 100%)
+    }
+
+    .userstatus {
+        font-size: 12px
+    }
+
+    span {
+        font-family: Jost, sans-serif
+    }
+
+    .allmessages {
+        width: 100%;
+        scroll-behavior: smooth;
+        overflow: auto;
+        padding-bottom: 10px;
+        margin: auto;
+        margin-top: -4px;
+        align-items: end;
+        background-color: #fff;
+    }
+
+    #afterchatstartinstructions li {
+        font-family: Jost, sans-serif;
+        font-size: 14px
+    }
+
+    ul {
+        list-style: none;
+        text-align: left;
+        display: block;
+        margin-left: -40px
+    }
+
+    .doeslist li:before {
+        content: '✓';
+        font-size: 13px;
+        margin-right: 6px;
+        color: green
+    }
+
+    .dontlist li:before {
+        content: '×';
+        font-size: 18px;
+        margin-right: 6px;
+        color: red
+    }
+
+    .allmessages::-webkit-scrollbar {
+        display: none
+    }
+
+    .messagecontainer {
+        display: block;
+        width: 60%;
+        margin: auto
+    }
+
+    .completemessage {
+        display: inline-block;
+        width: 80%;
+        margin-left: 5px;
+        margin-right: 9px
+    }
+
+    .mymessagecontainer {
+        display: block;
+        align-items: flex-start;
+        justify-content: end;
+        margin-bottom: 13px;
+        text-align: -webkit-right;
+        margin-top: 7px
+    }
+
+    .mychatvoicemessageplayer,
+    .randomchatauidiomessage {
+        width: 143px;
+        height: 40px;
+        margin-left: 7px;
+
+    }
+
+    .mychatvoicemessageplayer {
+        margin-right: 9px;
+    }
+
+    .streangermessagecontainer {
+        display: flex;
+        text-align: inherit;
+        align-items: flex-start;
+        justify-content: flex-start;
+        margin-bottom: 13px;
+        margin-left: 10x;
+        margin-top: 7px
+    }
+
+    .streangermessage {
+        display: inline-block;
+        padding: 8px;
+        font-size: 13px;
+        text-align: left;
+        padding-left: 20px;
+        padding-top: 10px;
+        min-width: auto;
+        max-width: 70%;
+        margin-left: 6px;
+        margin-bottom: 2px;
+        padding-bottom: 10px;
+        color: #000;
+        padding-right: 20px;
+        background: #e9e9e9;
+        border-radius: 25px 25px 25px 27px;
+        box-shadow: 0 0 2rem rgb(0 0 0 / 8%), 0 1rem 1rem -1rem rgb(0 0 0 / 10%)
+    }
+
+    .mymessage {
+        display: inline-block;
+        border: 1px solid;
+        text-align: left;
+        padding: 0;
+        font-size: 12px;
+        padding-left: 19px;
+        color: #fff;
+        padding-right: 15px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        background: #000;
+        border-radius: 25px 25px 25px 27px;
+        box-shadow: 0 0 2rem rgb(0 0 0 / 8%), 0 1rem 1rem -1rem rgb(0 0 0 / 10%)
+    }
+
+    .mymessagetime {
+        display: inline-block;
+        font-size: 9px;
+        margin-right: 13px;
+        color: #020202
+    }
+
+    .streangermessagetime {
+        display: inline-block;
+        font-size: 9px;
+        margin-left: 13px;
+        color: #020202
+    }
+
+    body::-webkit-scrollbar {
+        display: none
+    }
+
+    .mymessagevideo {
+        width: 29px;
+        height: 29px;
+        display: inline-block;
+        object-fit: cover;
+        border-radius: 16px;
+        margin-left: 7px;
+        margin-top: 2px
+    }
+
+    .messagefieldcontainter {
+        display: inline-flex;
+        background-color: #fff;
+        justify-content: center;
+        width: 100%;
+        margin: auto;
+        margin-top: 10px;
+        align-items: center
+    }
+
+    .messagefield {
+        height: 38px;
+        font-size: 13px;
+        width: 68%;
+        background-color: #fff;
+        border-radius: 30px;
+        font-family: Jost, sans-serif;
+        border: none;
+        border: 1px solid #cfcfcf;
+        padding-left: 54px;
+        padding-right: 57px;
+        outline: 0
+    }
+
+    .imageselectbutton,
+    .reconnctwithuser {
+        cursor: pointer;
+        position: relative;
+        padding: 13px;
+        border-radius: 25px
+    }
+
+    .imageselectbutton {
+        color: gray
+    }
+
+    .reconnectandfilebutton {
+        border: 1px solid
+    }
+
+    .messageimage {
+        padding: 0
+    }
+
+    .messagefield:hover {
+        background-color: #fff;
+        outline: 0
+    }
+
+    .messagesline {
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(94deg, rgba(252, 15, 192, 1) 0, rgb(228 11 254) 100%)
+    }
+
+    .introcard {
+        width: 60%;
+        height: auto;
+        margin: auto;
+        margin-top: 25px;
+        box-shadow: rgb(99 99 99 / 20%) 0 2px 8px 0;
+        padding: 5px;
+        border-radius: 14px
+    }
+
+    .intocardheader {
+        text-align: center
+    }
+
+    .introimage {
+        margin-top: 7px;
+        margin-bottom: 8px;
+        height: 100px;
+        width: 100px
+    }
+
+    .introheading {
+        font-size: 15px;
+        margin-top: 5px;
+        font-family: Jost, sans-serif
+    }
+
+    .introtext {
+        font-size: 11px;
+        margin-top: 0;
+        margin-left: 20px;
+        margin-right: 9px;
+        margin-bottom: 17px;
+        font-family: Jost, sans-serif
+    }
+
+    .totalonlneeuserscounter {
+        font-size: 12px;
+        font-family: Jost, sans-serif;
+        border: 1px solid;
+        display: inline-block;
+        padding: 3px;
+        padding-left: 15px;
+        padding-right: 15px;
+        background-color: #c2e6ff40;
+        color: #007bd3;
+        border-radius: 15px
+    }
+
+    .nomessage {
+        width: 96%;
+        margin: auto;
+        margin-top: 33px
+    }
+
+    .endtoendencrptedtext {
+        border: .5px solid #5db15d;
+        padding: 2px;
+        padding-left: 12px;
+        padding-right: 12px;
+        border-radius: 15px;
+        font-size: 11px;
+        background-color: #f8fff8;
+        color: #34a734
+    }
+
+    .inviteotheriserbutton,
+    .startchattingheadingbuttn {
+        font-size: 17px;
+        margin: 5px;
+        padding: 9px;
+        color: #fff;
+        display: inline-block;
+        padding-left: 31px;
+        background: #ff0080;
+        border: 1px solid #ff0080;
+        font-family: Jost, sans-serif;
+        padding-right: 31px;
+        margin-top: 10px;
+        margin-bottom: 15px;
+        border-radius: 25px;
+        box-shadow: #ff61b0 0 1px 25px
+    }
+
+    .inviteotheriserbutton {
+        background-color: #000;
+        color: rgb(255 255 255);
+        box-shadow: #818181 0 1px 25px;
+        border: 1px solid rgb(181 181 181)
+    }
+
+    .nomessage p {
+        font-size: 12px
+    }
+
+    select {
+        padding: 11px
+    }
+
+    .nomessagepaperplane {
+        width: 167px;
+        height: 166px
+    }
+
+    .nomessageheader {
+        align-items: center;
+        text-align: center
+    }
+
+    .messagerandomvideo {
+        width: 60%;
+        height: 40px;
+        object-fit: cover;
+        filter: brightness(39%)
+    }
+
+    .randomuserinfo {
+        display: flex;
+        align-items: center;
+        justify-content: center
+    }
+
+    .usresinfos {
+        text-align: center;
+        transform: translateY(-31px)
+    }
+
+    .usertypingindicator {
+        color: gray;
+        font-size: 9px;
+        animation: indicatorblnk 1.5s linear infinite
+    }
+
+    @keyframes indicatorblnk {
+        0% {
+            opacity: 0
+        }
+
+        50% {
+            opacity: .7
+        }
+
+        100% {
+            opacity: 0
+        }
+    }
+
+    .voicerecordingon {
+        color: green;
+        animation: voicerecornfinison 4.5s linear infinite
+    }
+
+    @keyframes voicerecornfinison {
+        0% {
+            opacity: 0
+        }
+
+        30% {
+            opacity: .7
+        }
+    }
+
+    .fa-circle {
+        margin: 0
+    }
+
+    .joinedsincespan,
+    .talkedtospan,
+    .totalspamspan,
+    .totalusercounterspan {
+        font-size: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+        border-radius: 25px;
+        background-color: #06050554;
+        color: #fff
+    }
+
+    a {
+        text-decoration: none;
+        color: #ff69b4
+    }
+
+    small {
+        font-size: 12px;
+        color: #292929;
+        font-family: Jost, sans-serif;
+        display: block;
+        width: 95%;
+        margin: auto;
+        margin-top: 10px
+    }
+
+    hr {
+        width: 20%;
+        height: 1px;
+        margin-top: 12px;
+        border: none;
+        background: #ff6200;
+        background: linear-gradient(151deg, rgba(255, 98, 0, 1) 0, rgba(255, 171, 0, 1) 48%, rgba(255, 0, 0, 1) 100%)
+    }
+
+    .endtoendencrypttext,
+    .nobullytext,
+    .nospamtext {
+        height: 20px;
+        font-size: 12px;
+        padding: 4px;
+        padding-left: 12px;
+        padding-right: 12px;
+        border: 1px solid;
+        color: #ff4fa7;
+        border-radius: 25px;
+        background-color: #ffebeb
+    }
+
+    .messageboxinstrustions {
+        margin-top: 20px;
+        margin-bottom: 20px
+    }
+
+    .fa-lock {
+        color: #00c800;
+        margin-right: 5px
+    }
+
+    .connecttionstatus {
+        text-align: center;
+        margin-bottom: -8px;
+        margin-top: 3px
+    }
+
+    .endtoendencryptconatiner {
+        margin: auto;
+        text-align: center;
+        margin-bottom: 15px
+    }
+
+    .closegifimageanstickerbutton {
+        text-align: center
+    }
+
+    .gufandstikcerclooebutton {
+        padding: 11px;
+        padding-left: 13px;
+        padding-right: 13px;
+        background-color: red;
+        color: #fff;
+        border: none;
+        font-size: 5px;
+        border-radius: 50px;
+        box-shadow: #ff61b0 0 1px 25px
+    }
+
+    .giforimagecontainerdiv {
+        text-align: center
+    }
+
+    .selectaddmediabutton {
+        width: 70px;
+        border: none;
+        padding: 5px;
+        color: #fff;
+        margin: 3px;
+        font-size: 11px;
+        background: linear-gradient(-135deg, #ff29bd 0, #ea29ff 100%);
+        border-radius: 20px;
+        display: inline-block;
+        box-shadow: #ff29bd 0 0 8px;
+        border: 2px solid #ff29bd
+    }
+
+    .unselectaddmediabutton {
+        width: 70px;
+        border: none;
+        padding: 5px;
+        margin: 3px;
+        font-size: 11px;
+        border-radius: 20px;
+        display: inline-block;
+        background-color: #fff;
+        color: #ff29bd;
+        border: 2px solid #ff29bd
+    }
+
+    .chatbox {
+        width: 60%;
+        z-index: 11;
+        display: block;
+        margin: auto;
+        border-radius: 0 0 15px 15px;
+        background-color: #fff
+    }
+
+    input {
+        height: 18px;
+        outline: 0;
+        width: 30%;
+        margin: 5px;
+        border-radius: 50px;
+        border: none;
+        padding: 10px;
+        font-family: Jost, sans-serif;
+        font-size: 13px;
+        background-color: #f3f3f3
+    }
+
+    select {
+        font-size: 13px
+    }
+
+    .username {
+        width: 25%;
+        text-align: center
+    }
+
+    .userage {
+        width: 25%;
+        text-align: center;
+        padding-left: 20px
+    }
+
+    select {
+        width: 25%;
+        outline: 0;
+        border: none;
+        margin: 4px;
+        border-radius: 50px;
+        text-align: center;
+        padding: 9px;
+        appearance: none;
+        font-family: Jost, sans-serif;
+        font-size: 13px;
+        background-color: #f3f3f3
+    }
+
+    .usernameandagediv {
+        margin-top: -35px;
+        margin-bottom: -10px
+    }
+
+    .messageusername {
+        display: block
+    }
+
+    .streangermessage {
+        display: inline-block;
+        padding: 8px;
+        font-size: 13px;
+        text-align: left;
+        padding-left: 20px;
+        padding-top: 10px;
+        margin-left: 6px;
+        margin-bottom: 2px;
+        padding-bottom: 10px;
+        color: #000;
+        padding-right: 20px;
+        background: #e9e9e9;
+        border-radius: 25px 25px 25px 27px;
+        box-shadow: 0 0 2rem rgb(0 0 0 / 8%), 0 1rem 1rem -1rem rgb(0 0 0 / 10%)
+    }
+
+    .mymessage {
+        display: inline-block;
+        border: 1px solid;
+        text-align: left;
+        min-width: auto;
+        max-width: 70%;
+        padding: 0;
+        font-size: 13px;
+        padding-left: 19px;
+        color: #fff;
+        margin-right: 7px;
+        padding-right: 15px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        background: #000;
+        border-radius: 25px 25px 25px 27px;
+        box-shadow: 0 0 2rem rgb(0 0 0 / 8%), 0 1rem 1rem -1rem rgb(0 0 0 / 10%)
+    }
+
+    .chatvideo {
+        width: 146%;
+        margin-left: 10px;
+        border-radius: 15px
+    }
+
+    .myyoutubevideo {
+        margin-right: 25px
+    }
+
+    .myimagedivoptions {
+        width: 75
+    }
+
+    .strnegerimagedivoptions {
+        max-width: 85px;
+        padding-bottom: 1px;
+        padding-right: 15px
+    }
+
+    .chatboxandmoreinfocontainer {
+        background-color: #fff;
+        width: 100%;
+        position: absolute;
+        bottom: 0px
+    }
+
+    .chatgropuinfocardimage {
+        display: inline-block;
+        height: 70px;
+        width: 70px;
+        object-fit: cover;
+        border-radius: 100px;
+        padding: 2px;
+        background-color: #fff;
+        margin-top: -37px
+    }
+
+    .roomchatinfocard {
+        margin: auto;
+        border-radius: 30px 30px 0 0;
+        padding-bottom: 5px;
+        margin-bottom: 6px;
+        border-radius: 10px 10px 0 0
+    }
+
+    .allonlineusersmaindiv {
+        width: 60%;
+        margin: auto;
+        display: block
+    }
+
+    .gripuchatusercalltoactionconatiner {
+        display: flex;
+        align-items: center;
+        background-color: #fff;
+        width: 62%;
+        justify-content: space-around;
+        height: 40px;
+        border-radius: 10px
+    }
+
+    .chatgroupuserinfo {
+        display: inline-block;
+        width: 29%;
+        text-align: center
+    }
+
+    .chatgroupuserstats {
+        height: 40px;
+        background-color: #f5f5f5;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        padding-left: 15px;
+        padding-right: 15px
+    }
+
+    .auserinfo {
+        display: flex;
+        height: 40px;
+        font-size: 11px;
+        align-items: center;
+        width: 100%;
+        font-weight: 400;
+        background-color: #fff;
+        color: #000;
+        border-bottom: 1px solid #f7f7f7;
+        justify-content: center
+    }
+
+    .auserinfo::-webkit-scrollbar {
+        display: none
+    }
+
+    .alluserinfodiv {
+        width: 100%;
+        margin-top: 8px
+    }
+
+    .groupchatuserflags {
+        margin-left: 13px
+    }
+
+    .goupchatuserpmbutton,
+    .groupchatuserlikebutton,
+    .groupchatusermentionbutton,
+    .gruoppchatuserflagbuton {
+        background-color: transparent;
+        border: none;
+        padding-left: 15px;
+        padding-right: 15px;
+        height: 96%;
+        border: 1px solid #fff;
+        border-radius: 5px;
+        margin: 0;
+        background-color: #f5f5f5;
+        width: 100%;
+        border-top: none;
+        border-bottom: none
+    }
+
+    .gruoppchatuserflagbuton {
+        color: gray
+    }
+
+    .groupchatuserlikebutton {
+        color: red
+    }
+
+    .chatboxandadddtohomeotainerdiv {
+        position: absolute;
+        bottom: 0px;
+        z-index: 10;
+        height: auto;
+        width: 100%
+    }
+
+    .gifinutimage {
+        width: 20px;
+        height: 20px;
+        margin: 0;
+        margin-bottom: -4px;
+        margin-left: -40px;
+        filter: contrast(.2)
+    }
+
+    .moreaboutheroombutton,
+    .sendmessagebutton,
+    .strangeruserimageoptions {
+        font-size: 15px;
+        border: none;
+        background-color: #fff;
+        color: rgb(80 80 80);
+        border-radius: 30px;
+        margin-right: 5px;
+        margin-left: 35px
+    }
+
+    .gifcontainer {
+        display: inline-block;
+        width: 45%;
+        max-height: 150px;
+        object-fit: cover
+    }
+
+    .allgifcontainerdiv {
+        text-align: center;
+        overflow: scroll;
+        max-height: 300px
+    }
+
+    .allgifcontainerdiv::-webkit-scrollbar {
+        display: none
+    }
+
+    .gifimage {
+        height: 100px;
+        width: 28%;
+        margin: 0;
+        object-fit: cover;
+        border-radius: 10px;
+        box-shadow: 0 0 2rem #00000014, 0 1rem 1rem -1rem #0000001a
+    }
+
+    .questeonstrangers {
+        font-weight: 700;
+        color: #313131;
+        font-size: 16px;
+        font-family: 'Cinzel Decorative', cursive;
+        margin: 10px;
+        margin-top: 0
+    }
+
+    .gifserchinputfieled {
+        width: 40%;
+        padding-left: 20px;
+        height: 22px;
+        text-align: center;
+        margin: 5px
+    }
+
+    .finpeoplepara {
+        margin-bottom: 15px;
+        margin-top: 5px;
+        font-family: 'Cinzel Decorative', cursive;
+        font-weight: 600
+    }
+
+    .navigation li {
+        display: inline;
+        margin: 5px;
+        font-size: 9px;
+        color: gray
+    }
+
+    .fa-phone {
+        color: green
+    }
+
+    .fa-circle {
+        margin: 0;
+        font-size: 6px
+    }
+
+    .strngerusernamemesssage {
+        font-size: 10px;
+        margin-left: 14px
+    }
+
+    .randomquestiondiv {
+        text-align: center;
+        padding: 10px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        border-radius: 15px;
+        background-color: #fffaf6
+    }
+
+    .randomquestionimage {
+        width: 70px;
+        height: 70px
+    }
+
+    .randomquesitonheading {
+        font-size: 15px;
+        color: #f70;
+        font-weight: 700;
+        font-family: 'Cinzel Decorative', cursive
+    }
+
+    .randomqeuestion {
+        font-size: 15px;
+        margin-top: 10px;
+        margin-bottom: 10px
+    }
+
+    #strangernametosave {
+        width: 50%;
+        padding-left: 30px
+    }
+
+    .startchattingheadingbuttn {
+        padding-left: 50px;
+        padding-right: 50px
+    }
+
+    #strangernametosavedf {
+        width: 60%
+    }
+
+    @media only screen and (max-width:800px) {
+        .gifinutimage {
+            margin-left: -32
+        }
+
+        .mymessagecontainer {
+            margin-right: 6px
+        }
+
+        .streangermessagecontainer {
+            margin-left: 6px
+        }
+
+        #strangernametosavedf {
+            width: 80%
+        }
+
+        #afterchatstartinstructions li {
+            font-family: Jost, sans-serif;
+            font-size: 12px
+        }
+
+        .randomquestionimage {
+            width: 70px;
+            height: 70px
+        }
+
+        .randomquesitonheading {
+            font-size: 12px;
+            font-weight: 700;
+            font-family: 'Cinzel Decorative', cursive
+        }
+
+        .randomqeuestion {
+            font-size: 14px
+        }
+
+        .finpeoplepara {
+            margin-bottom: 15px;
+            margin-top: 5px;
+            font-family: 'Cinzel Decorative', cursive;
+            font-weight: 600
+        }
+
+        .allgifcontainerdiv {
+            text-align: center;
+            overflow: scroll;
+            max-height: 150px
+        }
+
+        .gifserchinputfieled {
+            width: 80%;
+            padding-left: 20px;
+            height: 18px;
+            text-align: center
+        }
+
+        .moreaboutheroombutton,
+        .sendmessagebutton,
+        .strangeruserimageoptions {
+            font-size: 15px;
+            border: none;
+            background-color: #fff;
+            color: rgb(80 80 80);
+            border-radius: 30px;
+            margin-right: 5px;
+            margin-left: 10px
+        }
+
+        .roomchatinfocard {
+            width: 100%
+        }
+
+        .allonlineusersmaindiv {
+            margin: auto;
+            width: 98%
+        }
+
+        .completemessage {
+            max-width: 95%;
+            margin-left: -4px;
+            margin-right: -6px
+        }
+
+       
+
+        .mymessage {
+            display: inline-block;
+            border: 1px solid;
+            text-align: left;
+            min-width: auto;
+            padding: 0;
+            font-size: 12px;
+            padding-left: 19px;
+            color: #fff;
+            padding-right: 15px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            background: #000;
+            border-radius: 25px 25px 25px 27px;
+            box-shadow: 0 0 2rem rgb(0 0 0 / 8%), 0 1rem 1rem -1rem rgb(0 0 0 / 10%)
+        }
+
+        .streangermessage {
+            display: inline-block;
+            padding: 8px;
+            font-size: 13px;
+            text-align: left;
+            padding-left: 20px;
+            padding-top: 10px;
+            margin-left: 6px;
+            margin-bottom: 2px;
+            padding-bottom: 10px;
+            color: #000;
+            padding-right: 20px;
+            background: #e9e9e9;
+            border-radius: 25px 25px 25px 27px;
+            box-shadow: 0 0 2rem rgb(0 0 0 / 8%), 0 1rem 1rem -1rem rgb(0 0 0 / 10%)
+        }
+
+        input {
+            height: 26px
+        }
+
+        .chatrecordicon {
+            background: 0 0;
+            border: none;
+            font-size: 15px;
+            color: gray;
+            margin-left: -37px;
+            margin-right: 20px
+        }
+
+        .usernameandagediv {
+            margin-top: -25px;
+            margin-bottom: -15px
+        }
+
+        .username {
+            width: 25%;
+            padding: 6px;
+            font-size: 12px
+        }
+
+        .userage {
+            padding: 6px;
+            width: 25%;
+            text-align: center;
+            font-size: 12px;
+            padding-left: 14px
+        }
+
+        select {
+            width: 25%;
+            border: none;
+            outline: 0;
+            margin: 2px;
+            border-radius: 50px;
+            font-size: 12px;
+            padding: 10px;
+            font-family: Jost, sans-serif;
+            padding-left: 10px;
+            background-color: #f3f3f3
+        }
+
+        .moreaboutheroombutton,
+        .sendmessagebutton {
+            font-size: 14px;
+            background-color: #fff;
+            border: none;
+            color: rgb(80 80 80);
+            border-radius: 52px;
+            padding-left: 10px;
+            margin-left: 26px
+        }
+
+        .moreaboutheroombutton {
+            padding: 16px;
+            font-size: 13px;
+            padding-right: 16px;
+            padding-left: 16px;
+            margin-right: -17px
+        }
+
+        .maindiv {
+            display: block;
+            background-color: transparent;
+            margin: auto;
+            width: 100%;
+            bottom: 0
+        }
+
+        .maincontainer {
+            overflow: visible;
+            width: 100%;
+            margin-top: 56px;
+            border-radius: 12px
+        }
+
+        .nomessage {
+            width: 96%;
+            margin: auto;
+            margin-top: 20px
+        }
+
+        .reconnectbutton {
+            font-size: 15px;
+            background-color: #fff;
+            border: none;
+            margin-left: 5px;
+            border-radius: 57px;
+            padding-right: 10px
+        }
+
+        .filesharebutton {
+            transform: translateX(35px);
+            color: gray;
+            background-color: transparent;
+            border: none;
+            position: relative;
+            font-size: 13px;
+            margin-left: 1px
+        }
+
+        .messageinput {
+            width: calc(100vw - 250px);
+            height: 31px;
+            font-family: Jost, sans-serif;
+            font-size: 12px;
+            padding-left: 76px;
+            padding-right: 64px;
+            outline: 0;
+            border-radius: 79px;
+            margin-right: 5px;
+            margin-left: -33px;
+            border: none;
+            background-color: #e6e6e6b3
+        }
+
+        .chatbox {
+            width: 100%;
+            display: block;
+            position: absolute;
+            bottom: 0px;
+            margin: auto;
+            border-radius: 0;
+            margin-top: -7px;
+            background-color: #fff
+        }
+
+        .messagerandomvideo {
+            width: 100%;
+            height: 40px;
+            object-fit: cover;
+            filter: brightness(39%)
+        }
+
+        .mainvideocontainer {
+            width: 100%;
+            margin: auto
+        }
+
+    
+
+        .messagecontainer {
+            display: block;
+            width: 100%
+        }
+
+        .randomuservideo {
+            width: 100%;
+            height: 210px;
+            border-radius: 0;
+            object-fit: cover;
+            margin: 0;
+        }
+
+        small {
+            font-size: 11px;
+            color: #292929;
+            font-family: Jost, sans-serif;
+            display: block;
+            width: 95%;
+            margin: auto;
+            margin-top: 10px
+        }
+
+        .endtoendencrypttext,
+        .nobullytext,
+        .nospamtext {
+            height: 20px;
+            font-size: 12px;
+            padding: 3px;
+            padding-left: 12px;
+            padding-right: 12px;
+            border: 1px solid;
+            color: #f70;
+            border-radius: 25px;
+            background: #fff6ed
+        }
+
+        .nomessage p {
+            font-size: 12px
+        }
+
+        .nomessagepaperplane {
+            width: 148px;
+            height: 148px
+        }
+
+        .inviteotheriserbutton,
+        .startchattingheadingbuttn {
+            font-size: 14px;
+            padding: 7px;
+            color: #fff;
+            display: inline-block;
+            padding-left: 18px;
+            background: #ff0080;
+            border: 1px solid #ff0080;
+            font-family: Jost, sans-serif;
+            padding-right: 18px;
+            margin-bottom: 15px;
+            margin-top: 15px;
+            border-radius: 25px;
+            box-shadow: #ff61b0 0 1px 25px
+        }
+
+        .inviteotheriserbutton {
+            background-color: #000;
+            color: rgb(255 255 255);
+            box-shadow: #818181 0 1px 25px;
+            border: 1px solid rgb(181 181 181)
+        }
+
+        .messagetextfiledcontainer {
+            margin-top: 4px;
+            display: block;
+            text-align: center;
+            padding-top: 4px;
+            margin-bottom: 1px;
+            padding-bottom: 5px
+        }
+
+        .messagefield {
+            height: 38px;
+            font-size: 13px;
+            width: 100%;
+            background-color: #fff;
+            border-radius: 30px;
+            font-family: Jost, sans-serif;
+            border: none;
+            border: 1px solid #cfcfcf;
+            padding-left: 54px;
+            padding-right: 57px;
+            outline: 0
+        }
+
+        .introcard {
+            width: 96%;
+            height: auto;
+            margin: auto;
+            margin-top: 25px;
+            box-shadow: rgb(99 99 99 / 20%) 0 2px 8px 0;
+            padding: 5px;
+            border-radius: 2px
+        }
+
+        .chatimages {
+            max-width: 68%
+        }
+
+        .videosharefilebutton {
+            margin-left: 6px
+        }
+
+        #strangernametosave {
+            width: 80%;
+            height: 20px;
+            margin-bottom: -3px;
+            text-align: center
+        }
+    }
+
+    .gifclosebutton{
+        display: block;
+        width: 80px;
+        background-color: black;
+        border: none;
+        color: white;
+        padding: 9px;
+        border-radius: 100px;
+        font-size: 13px;
+    }
+
+        .wawitingcapsilue{
+            margin-bottom: 25px
+        animation: waitingcapsule 2s infinite alternate-reverse;
+    }
+
+    @keyframes waitingcapsule {
+        0%{
+            opacity: 100%;
+        }
+
+        100%{
+            opacity: 50%;
+        }
+    }
+</style>
+
+<div class="topdivcontainer">
+    <div class="sitetitleconatiner">
+        <span onclick="window.location = '/'" class="fa siteheadermhomebutton fa-chevron-left "></span>
+        <button onclick="addusertofrinds(this)" id="addusertofriendslistbutton"
+            class="fa sharesitechatageicon fa-user-plus" style="display: none;"></button>
+        <a href="/">
+            <img src="/sitelogo.png"
+                class="sitelogo" alt="Site logo">
+        </a> 
+        <a href="/">
+            <span class="sitetitle">ChatWeber
+            {{!-- <span class="siteslogan" style="text-align: center;font-weight: 700;">Private Chat</span>  --}}
+            </span>
+        </a>
+    </div>
+</div>
+
+<div class="maindiv">
+    <div class="maincontainer">
+
+        <div class="messagecontainer">
+            <div class="allmessages" id="allmessages" style="height: 200px;">
+
+                <div class="nomessage" id="nomessage">
+                    <div id="initialintrotext">
+                        {{!-- <div class="endtoendencryptconatiner">
+                            <span class="endtoendencrptedtext">
+                                <i class="fa fa-lock"></i>end-to-end encrypted text and images</span>
+                        </div> --}}
+                        <div class="nomessageheader" id="nomessageheader">
+                            <div class="usernameandagediv" style="display: none;">
+                                <input class="username" type="text" id="username" placeholder="Your name?"
+                                    value="{{randomusername}}" autocomplete="off">
+                                <input class="userage" type="number" id="userage" placeholder="Your age?"
+                                    value="{{userage}}" autocomplete="off">
+                                <select class="usergender" name="usergender" id="usergender">
+                                    <option value="male" selected>Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                            <!-- <p class="questeonstrangers">“Smile at strangers and you just might change a life.” </p> -->
+
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    {{!-- <div class="chatboxandadddtohomeotainerdiv">
+        <div class="chatbox">
+            <div class="messagetextfiledcontainer">
+                <label class="messageimagebutton filesharebutton fa fa-picture-o">
+                    <input type="file" id="messageimageinput" multiple accept="image/*">
+                </label>
+                <label class="messageimagebutton videosharefilebutton filesharebutton fa fa-video-camera">
+                    <input type="file" id="messagevideoinput" accept="video/mp4,video/x-m4v,video/*">
+                </label>
+                <input type="text" class="messageinput" autocomplete="off" id="messagefield" placeholder="Connect...">
+                <button class="fa chatrecordicon fa-microphone" id="voicerecordingbutton"
+                    onclick="recordvoicemessage(this)"></button>
+                <button type="button" id="messagesentbutton" onclick="sendmessage()"
+                    class="sendmessagebutton fa fa-paper-plane-o" style="font-weight: 800;"></button>
+            </div>
+            <div class="roomchatinfocard" id="seaechagifdiv" style="display: none;">
+                <div class="allgifcontainerdiv" id="allgidcontainerdiv">
+                </div>
+                <center>
+                    <input type="text" autocomplete="off" id="gifserchinputfieledd" class="gifserchinputfieled"
+                        placeholder="search a GIF or sticker">
+                </center>
+            </div>
+        </div>
+    </div> --}}
+
+
+
+
+
+
+
+ 
+    <div class="chatboxandadddtohomeotainerdiv">
+        <div>
+            <div class="roomchatinfocard" id="freinddrequestrecivedconatiner">
+             
+        </div>
+        <div class="chatbox" id="chatboxconatiner">
+
+            <div class="messagetextfiledcontainer">
+                <button type="button" id="callbutton" style="margin-right: -5px;color: rgb(0, 0, 0);"
+                    class="reconnectbutton fa startcall fa-home" disabled="false"
+                    onclick="window.location = '/'"></button>
+
+                <label class="messageimagebutton filesharebutton fa fa-picture-o">
+                    <input type="file" id="messageimageinput" multiple accept="image/*">
+                </label>
+                <label class="messageimagebutton videosharefilebutton filesharebutton fa fa-video-camera">
+                    <input type="file" id="messagevideoinput" max="50000000" accept="video/mp4,video/x-m4v,video/*">
+                </label>
+                <input type="text" class="messageinput" autocomplete="off" id="messagefield" placeholder="Connect...">
+
+
+                <span class="inputagifspan" onclick="showorhideimagsendbutton()">
+                    <img src="/gif-icon.png"  class="gifinutimage">
+                </span>
+                <button class="fa chatrecordicon fa-microphone" id="voicerecordingbutton"
+                    onclick="recordvoicemessage(this)"></button>
+                <button type="button" id="messagesentbutton" disabled="true" onclick="sendmessage()"
+                    class="sendmessagebutton fa fa-paper-plane-o" style="font-weight: 800;"></button>
+            </div>
+            <div class="roomchatinfocard" id="seaechagifdiv" style="display: none;">
+
+                <div class="allgifcontainerdiv" id="allgidcontainerdiv">
+                </div>
+                <center>
+                    <input type="text" autocomplete="off" id="gifserchinputfieledd" class="gifserchinputfieled"
+                        placeholder="search a GIF or sticker">
+                        <br>
+                        <button type="button" class="gifclosebutton" onclick="document.getElementById('seaechagifdiv').style.display = 'none';document.getElementById('gifserchinputfieledd').value = ''">Close</button>
+                </center>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+
+
+<script>
+
+    var socket = io()
+    var myroomid = null
+    var gifbuttonshoworhiecounter = 0
+    var usernameinput = document.getElementById("username") || "noname"
+    var userageinput = document.getElementById("userage")
+    var usergenderinput = document.getElementById("usergender")
+    var username = "{{{username}}}"
+    var usergage = userageinput.value
+    var usergender = usergenderinput.value
+
+
+
+    var firsttimesocketconnnection = true
+    function connectwithusersordisconnect(element) {
+        myroomid = "{{{roomid}}}"
+        socket.emit("addtoprivatechatrom", myroomid, username, userage, usergender, userid)
+              setInterval(() => {
+                socket.emit("eventtojointrandomchattextagainandaing", myroomid)
+            }, 1500);
+
+    }
+
+    connectwithusersordisconnect()
+
+
+    socket.on("disconnedtedwithuserrandomtextchat", () => {
+        
+        if(document.getElementById("sdguserfube7t")){
+            document.getElementById("sdguserfube7t").remove()
+        }
+
+        myroomid = new Date().getTime()
+        document.getElementById("messagefield").placeholder = "Disconnected...."
+        document.getElementById("messagefield").value = ""
+        document.getElementById("messagefield").disabled = true
+
+
+        if (document.getElementById("useristypingindicator")) {
+            document.getElementById("useristypingindicator").remove()
+        }
+
+
+
+        var messagecontnier = document.getElementById("allmessages")
+        var span = document.createElement("span")
+
+        span.innerHTML = ` 
+    <div class="tmessage">
+    <span class="waitingtoconnect disconnectedspan" style="color: black; background-color: #ffdede;">
+    <i class="fa fa-plug"></i> ${username} leaved the chat. Redirecting in 5s</span>
+    </div>
+    `
+
+    setTimeout(()=>{
+        window.location = "/chat/friends"
+    },5000)
+        document.getElementById("allmessages").appendChild(span)
+        setTimeout(() => {
+            messagecontnier.scrollTop = messagecontnier.scrollHeight
+        }, 200);
+
+
+    })
+
+socket.on("pleasewaitfortheusertojoinprivatechatroom", ()=>{
+         
+        if(document.getElementById("sdguserfube7t")){
+            document.getElementById("sdguserfube7t").remove()
+        }
+        var messagecontnier = document.getElementById("allmessages")
+        var span = document.createElement("span")
+
+        span.innerHTML = ` 
+    <div class="tmessage" id="waitingforotherusermessage">
+    <span class="waitingtoconnect disconnectedspan" style="color: black">
+    <i class="fa fa-clock-o"></i> Waiting for ${username} to join the conversation.</span>
+    </div>
+    `
+        document.getElementById("allmessages").appendChild(span)
+        setTimeout(() => {
+            messagecontnier.scrollTop = messagecontnier.scrollHeight
+        }, 200);
+})
+
+socket.on("userrejectyourfeindsrequtes", ()=>{
+    
+    document.getElementById("waitingforotherusermessage").disabled = "none"
+          var messagecontnier = document.getElementById("allmessages")
+        var span = document.createElement("span")
+
+        span.innerHTML = ` 
+    <div class="tmessage" id="waitingforotherusermessage">
+    <span class="waitingtoconnect disconnectedspan" style="color: black">
+    <i class="fa fa-plug"></i> ${username} Rejected Request. Try Again After Some Time.</span>
+    <br>
+        <span class="waitingtoconnect disconnectedspan" style="color: black">
+     Redirecting...</span>
+
+    </div>
+    `
+        document.getElementById("allmessages").appendChild(span)
+        setTimeout(() => {
+            messagecontnier.scrollTop = messagecontnier.scrollHeight
+        }, 200);
+
+setTimeout(()=>{
+    window.location = "/chat/friends"
+}, 5000)
+        
+})
+
+
+socket.on("boththesusejoinpricatechatroom", ()=>{
+
+     
+        if(document.getElementById("sdguserfube7t")){
+            document.getElementById("sdguserfube7t").remove()
+        }
+
+if( document.getElementById("waitingforotherusermessage")){
+    document.getElementById("waitingforotherusermessage").remove()
+
+}
+
+if(document.getElementById("messagesentbutton")){
+    document.getElementById("messagesentbutton").disabled = false
+}
+         var messagecontnier = document.getElementById("allmessages")
+        var span = document.createElement("span")
+        span.innerHTML = ` 
+    <div class="tmessage" id="sdguserfube7t">
+    <span class="waitingtoconnect connectedspan" style="color: black">
+    <i class="fa fa-lock"></i>Connected with ${username}.</span>
+    </div>`
+document.getElementById("messagefield").placeholder = "Say something..."
+
+        document.getElementById("allmessages").appendChild(span)
+        document.getElementById("messageimageinput").value = ""
+        setTimeout(() => {
+            messagecontnier.scrollTop = messagecontnier.scrollHeight
+        }, 200);
+})
+
+    // socket.on("useraddedtoachatroom", (username, userage, usergender) => {
+
+    //     document.getElementById("messagefield").placeholder = "Say Something..."
+
+    //     if (document.getElementById("useristypingindicator")) {
+    //         document.getElementById("useristypingindicator").remove()
+    //     }
+
+
+    //     var getgendersign = () => {
+    //         if (usergender == "male") {
+    //             return "👦"
+    //         }
+
+    //         if (usergender == "female") {
+    //             return "👧"
+    //         }
+
+    //         if (usergender == "other") {
+    //             return "🏳️‍🌈"
+    //         }
+    //     }
+
+    //     var messagecontnier = document.getElementById("allmessages")
+    //     var span = document.createElement("span")
+    //     span.innerHTML = ` 
+    // <div class="tmessage">
+    // <span class="waitingtoconnect connectedspan" style="color: black">
+    // <i class="fa fa-lock"></i>Connected With New User, Say "Hello"</span>
+    // </div>`
+
+
+    //     document.getElementById("allmessages").appendChild(span)
+    //     document.getElementById("messageimageinput").value = ""
+    //     setTimeout(() => {
+    //         messagecontnier.scrollTop = messagecontnier.scrollHeight
+    //     }, 200);
+    // })
+
+
+
+
+
+    function sendmessage() {
+
+        document.getElementById("messagefield").focus();
+
+        var usernameinput = document.getElementById("username")
+        var username = usernameinput.value
+
+        if (document.getElementById("useristypingindicator")) {
+            document.getElementById("useristypingindicator").remove()
+        }
+
+        var messagefiled = document.getElementById("messagefield")
+
+        if (messagefiled.value && myroomid != null) {
+            var uniqueid = new Date().getTime()
+     
+
+            socket.emit("sendtextmessagerandomtextchat", username, String(messagefiled.value), myroomid, uniqueid)
+            if (document.getElementById("useristypingindicator")) {
+                document.getElementById("useristypingindicator").remove()
+            }
+            var mymessagespan = document.createElement("span")
+            mymessagespan.innerHTML = `
+        
+        <div class="mymessagecontainer" id="mymessage${uniqueid}" onmouseover="showmymessageoptionsforthismessage('mymessageoption${uniqueid}')" onmouseout="hidemymessageoptionbar('mymessageoption${uniqueid}')">
+        <div class="completemessage">
+       
+        <span class="mymessage">
+        ${String(messagefiled.value)}
+        </span>
+        <br>
+        <div class="mymessageoptionmaindiv" id='mymessageoption${uniqueid}' style="display: none;">
+        <span class="fa mychatoprionbutton fa-trash"  onclick="deletemymessage('${uniqueid}')"></span>
+        <span class="fa mychatoprionbutton fa-clone"  onclick="copythemessagecontent(this, '${messagefiled.value}')"></span>
+        <span class="fa mychatoprionbutton fa-volume-up" onclick="speakthismessage(this, '${messagefiled.value}')"></span>
+        <span class="fa mychatoprionbutton  fa-times" onclick="hidemymessageoption('mymessageoption${uniqueid}')" ></span>
+        </div>
+        
+        <span class="mymessagetime">
+
+        <span class="mymessagelikeicon" id='mymessagelikediv${uniqueid}' style="display: none;">
+           <span class="mymessagelikecounter" id="mymessagelikecontainer${uniqueid}"></span> <span class="fa mymessagelikeheart fa-heart">  · </span> 
+            </span>
+
+     ${currenttime()}
+        </span>
+        </div>
+        </div>
+        </div>
+        `
+            var allmessagecontainer = document.getElementById("allmessages")
+            allmessagecontainer.append(mymessagespan)
+            messagefiled.value = ""
+            var messagecontnier = document.getElementById("allmessages")
+            messagecontnier.scrollTop = messagecontnier.scrollHeight
+
+        }
+
+
+    }
+
+    function copyroomidtoclopborard(element, roomid) {
+        navigator.clipboard.writeText(roomid).then(() => {
+            element.innerText = "Copied"
+        })
+
+        setTimeout(() => {
+            element.innerText = "Copy Room ID"
+        }, 3000);
+    }
+
+
+    function showmymessageoptionsforthismessage(optionbar) {
+        document.getElementById(optionbar).style.display = "flex"
+    }
+
+    function hidemymessageoptionbar(optionbar) {
+        document.getElementById(optionbar).style.display = "none"
+    }
+
+    function showstrrangermessageoptoonbar(optionbar) {
+        document.getElementById(optionbar).style.display = "flex"
+    }
+
+    function hidestrangermessgaeoptionbar(optionbar) {
+        document.getElementById(optionbar).style.display = "none"
+    }
+
+    function addliketomessage(element, messageid) {
+        socket.emit("requesttoaddliketothemessageinrandomchat", myroomid, messageid)
+        if (document.getElementById("useristypingindicator")) {
+            document.getElementById("useristypingindicator").remove()
+        }
+        element.disabled = "true"
+        element.classList.remove("fa-heart-o")
+        element.classList.add("fa-heart")
+        element.style.color = "red"
+    }
+
+
+    function copythemessagecontent(element, message) {
+        element.classList.remove("fa-clone")
+        element.classList.add("fa-check")
+        navigator.clipboard.writeText(message)
+    }
+
+
+    function speakthismessage(element, message) {
+        element.classList.remove("fa-volume-up")
+        element.classList.add("fa-check")
+        var msg = new SpeechSynthesisUtterance(message);
+        speechSynthesis.speak(msg);
+    }
+
+    function hidemymessageoption(messageoptions) {
+        document.getElementById(messageoptions).style.display = "none"
+    }
+
+    function hidestrangermessageoption(strangermessageoptions) {
+        document.getElementById(strangermessageoptions).style.display = "none"
+
+    }
+
+
+    function hidemymessageoption(strnagermesssageoption) {
+        document.getElementById(strnagermesssageoption).style.display = "none"
+    }
+
+    function deletestrngermessage(strangermessage) {
+        document.getElementById(strangermessage).remove()
+    }
+
+    function deletemymessage(messageid) {
+        socket.emit("requesttoremovethemessagefromroomtextchat", myroomid, messageid)
+        if (document.getElementById("useristypingindicator")) {
+            document.getElementById("useristypingindicator").remove()
+        }
+    }
+
+    socket.on("removetheroommessagefromtherandomchat", (messageid) => {
+             
+        if(document.getElementById("sdguserfube7t")){
+            document.getElementById("sdguserfube7t").remove()
+        }
+        if (document.getElementById("useristypingindicator")) {
+            document.getElementById("useristypingindicator").remove()
+        }
+
+        if (document.getElementById(`strangermessage${messageid}`)) {
+            document.getElementById(`strangermessage${messageid}`).remove()
+        }
+
+        if (document.getElementById(`mymessage${messageid}`)) {
+            document.getElementById(`mymessage${messageid}`).remove()
+        }
+    })
+
+
+
+
+    var currenttime = () => {
+        const current = new Date();
+        const time = current.toLocaleTimeString("en-US");
+        return time
+    }
+
+
+    socket.on("addliketothemessgaerandomchat", (messageid) => {
+             
+        if(document.getElementById("sdguserfube7t")){
+            document.getElementById("sdguserfube7t").remove()
+        }
+        if (document.getElementById("useristypingindicator")) {
+            document.getElementById("useristypingindicator").remove()
+        }
+
+        if (document.getElementById(`mymessagelikecontainer${messageid}`)) {
+            document.getElementById(`mymessagelikediv${messageid}`).style.display = "inline"
+
+        }
+
+        if (document.getElementById(`strangermessagelikecontainer${messageid}`)) {
+
+            document.getElementById(`strangeruserlikediv${messageid}`).style.display = "inline"
+
+        }
+
+    })
+
+
+
+
+
+    socket.on("recivedtextmessagerandomtextchat", (messagefromstranger, username, uniqueid) => {
+
+     
+        if(document.getElementById("sdguserfube7t")){
+            document.getElementById("sdguserfube7t").remove()
+        }
+        if (document.getElementById("useristypingindicator")) {
+            document.getElementById("useristypingindicator").remove()
+        }
+
+        var strangermessagespan = document.createElement("span")
+        strangermessagespan.innerHTML = ` 
+
+    <div class="streangermessagecontainer" id="strangermessage${uniqueid}" onmouseover="showstrrangermessageoptoonbar('strangermessageoptions${uniqueid}')" onmouseout="hidestrangermessgaeoptionbar('strangermessageoptions${uniqueid}')">
+    <div class="completemessage">
+            <span class="streangermessage">
+                            ${messagefromstranger} 
+                        </span>
+                        <br>
+                        <div class="strangeruseroptionmaindiv" id="strangermessageoptions${uniqueid}" style="display: none;" style="display: none;">
+                            <button class="fa strngermessagechatoprionbutton messagelikebutton fa-heart-o" style="margin-right: -9px;"  onclick="addliketomessage(this, '${uniqueid}')"></button>
+                            <span class="fa strngermessagechatoprionbutton fa-clone"  onclick="copythemessagecontent(this, '${messagefromstranger}')"></span>
+                            <span class="fa strngermessagechatoprionbutton fa-trash" onclick="deletestrngermessage('strangermessage${uniqueid}')" ></span>
+                            <span class="fa strngermessagechatoprionbutton fa-volume-up" onclick="speakthismessage(this, '${messagefromstranger}')"></span>
+                            <span class="fa strngermessagechatoprionbutton  fa-times" onclick="hidestrangermessageoption('strangermessageoptions${uniqueid}')" ></span>
+                            </div>
+                                <span class="streangermessagetime">
+  ${currenttime()}
+    </span>
+                                </span>
+                      <span class="mymessagelikeicon" id='strangeruserlikediv${uniqueid}' style="display: none;">
+                          <span> · </span>  <span class="mymessagelikecounter" id="strangermessagelikecontainer${uniqueid}"></span> <span class="fa mymessagelikeheart fa-heart"> </span>
+                              </span>
+                        </span>
+                        </div>
+                    </div>
+`
+        var allmessagecontainer = document.getElementById("allmessages")
+        allmessagecontainer.append(strangermessagespan)
+        var messagecontnier = document.getElementById("allmessages")
+        messagecontnier.scrollTop = messagecontnier.scrollHeight
+        // ${currenttime().split(":")[0]}:${currenttime().split(":")[1]}
+
+    })
+
+
+
+
+    var currenttime = () => {
+        const current = new Date();
+        const time = current.toLocaleTimeString("en-US");
+        return time
+    }
+
+    var inputtextcounter = 0
+    document.getElementById("messagefield").addEventListener("input", () => {
+        if (inputtextcounter % 2 == 0) {
+            socket.emit("randomtextchatuseristypingemit", myroomid)
+        }
+    })
+
+
+    socket.on("randomtextchatusertypeingindicatoron", () => {
+             
+        if(document.getElementById("sdguserfube7t")){
+            document.getElementById("sdguserfube7t").remove()
+        }
+
+        var span = document.createElement("span")
+
+        span.innerHTML = `
+    <div class="streangermessagecontainer" id="useristypingindicator">
+    <div class="completemessage">
+    <span class="streangermessage" style="box-shadow: none;padding-top: 6px;">
+<span style="margin: 0px;" class="fa usertypingindicator fa-circle"></span>
+<span style="margin: 0px;" class="fa usertypingindicator fa-circle"></span>
+<span style="margin: 0px;" class="fa usertypingindicator fa-circle"></span>
+    </span>
+
+    </div>
+</div>
+`
+
+        var allmessagecontainer = document.getElementById("allmessages")
+        if (document.getElementById("useristypingindicator") == null || undefined) {
+            allmessagecontainer.append(span)
+            var messagecontnier = document.getElementById("allmessages")
+            messagecontnier.scrollTop = messagecontnier.scrollHeight
+
+            setTimeout(() => {
+                if (document.getElementById("useristypingindicator")) {
+                    document.getElementById("useristypingindicator").remove()
+
+                }
+            }, 10000);
+        }
+
+    })
+
+
+    document.getElementById("messageimageinput").addEventListener("change", (ev) => {
+
+        if (document.getElementById("useristypingindicator")) {
+            document.getElementById("useristypingindicator").remove()
+        }
+        var totalselectedfiles = ev.target.files.length
+
+        for (var i = 0; i <= totalselectedfiles - 1; i++) {
+            var targetfile = ev.target.files[i]
+            var imagesize = Math.floor((targetfile.size) / (1024))
+            var newfilereader = new FileReader()
+            newfilereader.readAsDataURL(targetfile)
+            newfilereader.addEventListener("loadend", (ev) => {
+                var uniqueid = new Date().getTime()
+                var usernameinput = document.getElementById("username")
+                var mymessagespan = document.createElement("span")
+                mymessagespan.innerHTML = `
+
+            <div class="mymessagecontainer" style="padding: 0px;" id="mymessage${uniqueid}" onmouseover="showmymessageoptionsforthismessage('mymessageoption${uniqueid}')" onmouseout="hidemymessageoptionbar('mymessageoption${uniqueid}')">
+        <div class="completemessage">
+        <img class="chatimages" src="${ev.target.result}">
+        <br>
+        <div class="mymessageoptionmainimagediv videomyvideo" id='mymessageoption${uniqueid}' style="display: none;">
+        <span class="fa mychatoprionbutton fa-trash"  onclick="deletemymessage(${uniqueid})"></span>
+        <span class="fa mychatoprionbutton  fa-times" onclick="hidemymessageoption('mymessageoption${uniqueid}')" ></span>
+        </div>
+        <span class="mymessagetime">
+        
+        <span class="mymessagelikeicon" id='mymessagelikediv${uniqueid}' style="display: none;">
+           <span class="mymessagelikecounter" id="mymessagelikecontainer${uniqueid}"></span> <span style="margin-right: 3px;" class="fa mymessagelikeheart fa-heart">  · </span> 
+            </span>
+      ${currenttime()}
+        </span>
+        </div>
+        </div>
+        
+        `
+                var allmessagecontainer = document.getElementById("allmessages")
+                allmessagecontainer.append(mymessagespan)
+                var messagecontnier = document.getElementById("allmessages")
+                messagecontnier.scrollTop = messagecontnier.scrollHeight
+     
+
+                socket.emit("imagetourldatatextrandomtextchat", myroomid, ev.target.result, username, imagesize, uniqueid)
+                if (document.getElementById("useristypingindicator")) {
+                    document.getElementById("useristypingindicator").remove()
+                }
+            })
+        }
+    })
+
+
+    socket.on("addimagetotextchatrandomtextchat", (imageurl, username, imagesize, uniqueid) => {
+     
+        if(document.getElementById("sdguserfube7t")){
+            document.getElementById("sdguserfube7t").remove()
+        }
+        if (document.getElementById("useristypingindicator")) {
+            document.getElementById("useristypingindicator").remove()
+        }
+        var strangermessagespan = document.createElement("span")
+        strangermessagespan.innerHTML = ` 
+
+    <div class="streangermessagecontainer" id="strangermessage${uniqueid}" onmouseover="showstrrangermessageoptoonbar('strangermessageoptions${uniqueid}')" onmouseout="hidestrangermessgaeoptionbar('strangermessageoptions${uniqueid}')">
+    <div class="completemessage">
+    <span class="messageimage"  >
+    <img class="chatimages" src="${imageurl}" alt="" srcset="">
+    </span>
+    <br>
+    <div class="strnegerimagedivoptions" id="strangermessageoptions${uniqueid}" style="display: none;" style="display: none;">
+    <button class="fa strngermessagechatoprionbutton messagelikebutton fa-heart-o" style="margin-right: -9px;"  onclick="addliketomessage(this, '${uniqueid}')"></button>
+    <a style="color: black;" class="fa strngermessagechatoprionbutton fa-cloud-download" href="${imageurl}" download="ChatWeber${uniqueid}.jpeg"></a>
+    <span class="fa strngermessagechatoprionbutton fa-trash" onclick="deletestrngermessage('strangermessage${uniqueid}')" ></span>
+    <span class="fa strngermessagechatoprionbutton  fa-times" onclick="hidestrangermessageoption('strangermessageoptions${uniqueid}')" ></span>
+    </div>
+    <span class="streangermessagetime">
+  ${currenttime()}, ${imagesize} KB
+    </span>
+    <span class="mymessagelikeicon" id='strangeruserlikediv${uniqueid}' style="display: none;">
+    <span> · </span>
+    <span class="mymessagelikecounter" id="strangermessagelikecontainer${uniqueid}"></span> <span class="fa mymessagelikeheart fa-heart"> </span>
+      </span>
+    </div>
+</div>
+
+`
+        var allmessagecontainer = document.getElementById("allmessages")
+        allmessagecontainer.append(strangermessagespan)
+        var messagecontnier = document.getElementById("allmessages")
+        messagecontnier.scrollTop = messagecontnier.scrollHeight
+    })
+
+
+
+    socket.on("addstrangervoicemessagetomessaesrandomchat", (audiodata, username, uniqueid) => {
+     
+
+     
+        if(document.getElementById("sdguserfube7t")){
+            document.getElementById("sdguserfube7t").remove()
+        }
+        if (document.getElementById("useristypingindicator")) {
+            document.getElementById("useristypingindicator").remove()
+        }
+        var allmessages = document.getElementById("allmessages")
+        var span = document.createElement("span")
+        span.innerHTML = `
+  <div class="streangermessagecontainer" style="margin-right: 10px;" id="strangermessage${uniqueid}" onmouseover="showstrrangermessageoptoonbar('strangermessageoptions${uniqueid}')" onmouseout="hidestrangermessgaeoptionbar('strangermessageoptions${uniqueid}')">
+  <div class="completemessage">
+  <span class="messageimage"  >
+  <audio class="randomchatauidiomessage" controls>
+  <source src="${audiodata}" type="audio/mpeg">
+  </audio>
+  </span>
+  <br>
+  <div class="strnegerimagedivoptions" id="strangermessageoptions${uniqueid}" style="display: none;" style="display: none;">
+  <button class="fa strngermessagechatoprionbutton messagelikebutton fa-heart-o" style="margin-right: -9px;"  onclick="addliketomessage(this, '${uniqueid}')"></button>
+  <a style="color: black;" class="fa strngermessagechatoprionbutton fa-cloud-download" href="${audiodata}" download="ChatWeber${uniqueid}.mp3"></a>
+  <span class="fa strngermessagechatoprionbutton fa-trash" onclick="deletestrngermessage('strangermessage${uniqueid}')" ></span>
+  <span class="fa strngermessagechatoprionbutton  fa-times" onclick="hidestrangermessageoption('strangermessageoptions${uniqueid}')" ></span>
+  </div>
+  <span class="streangermessagetime">
+  ${currenttime()}
+  </span>
+  <span class="mymessagelikeicon" id='strangeruserlikediv${uniqueid}' style="display: none;">
+  <span> · </span>
+  <span class="mymessagelikecounter" id="strangermessagelikecontainer${uniqueid}"></span> <span class="fa mymessagelikeheart fa-heart"> </span>
+    </span>
+  </div>
+</div>
+
+  `
+        allmessages.append(span)
+        var messagecontnier = document.getElementById("allmessages")
+        setTimeout(() => {
+            messagecontnier.scrollTop = messagecontnier.scrollHeight
+        }, 200);
+    })
+
+
+
+
+    let mediaRecorder, chunks = [], audioURL = '';
+    var voicemessagerecordingcounter = 0
+    function recordvoicemessage(element) {
+
+        if (voicemessagerecordingcounter % 2 == 0) {
+            navigator.mediaDevices.getUserMedia({ audio: true }).then(stream => {
+                mediaRecorder = new MediaRecorder(stream)
+                mediaRecorder.ondataavailable = (e) => {
+                    chunks.push(e.data)
+                }
+                mediaRecorder.onstop = () => {
+                    const blob = new Blob(chunks, { 'type': 'audio/ogg; codecs=opus' })
+                    chunks = []
+                    var newfilereader = new FileReader()
+                    newfilereader.readAsDataURL(blob)
+                    newfilereader.addEventListener("load", (ev) => {
+
+                        var mymessagespan = document.createElement("span")
+                        var uniqueid = new Date().getTime()
+
+                        mymessagespan.innerHTML = `
+                    
+                    <div class="mymessagecontainer" style="padding: 0px;margin-left: 10px;" id="mymessage${uniqueid}" onmouseover="showmymessageoptionsforthismessage('mymessageoption${uniqueid}')" onmouseout="hidemymessageoptionbar('mymessageoption${uniqueid}')">
+                    <div class="completemessage">
+                    <audio class="mychatvoicemessageplayer" controls>
+                    <source src="${ev.target.result}" type="audio/mpeg">
+                    </audio>
+                    <body>
+                    <br>
+                    <div class="mymessageoptionmainimagediv" id='mymessageoption${uniqueid}' style="display: none;">
+                    <span class="fa mychatoprionbutton fa-trash"  onclick="deletemymessage(${uniqueid})"></span>
+                    <span class="fa mychatoprionbutton  fa-times" onclick="hidemymessageoption('mymessageoption${uniqueid}')" ></span>
+                    </div>
+                    <span class="mymessagetime">
+                    
+                    <span class="mymessagelikeicon" id='mymessagelikediv${uniqueid}' style="display: none;">
+                       <span class="mymessagelikecounter" id="mymessagelikecontainer${uniqueid}"></span> <span class="fa mymessagelikeheart fa-heart"> · </span> 
+                        </span>
+                        ${currenttime()}
+                    </span>
+                    </div>
+                    </div>
+                           
+
+            `
+     
+
+                        socket.emit("randomchatextvoicemssagedatasent", ev.target.result, myroomid, username, uniqueid)
+                        if (document.getElementById("useristypingindicator")) {
+                            document.getElementById("useristypingindicator").remove()
+                        }
+
+                        var allmessagecontainer = document.getElementById("allmessages")
+                        allmessagecontainer.append(mymessagespan)
+                        var messagecontnier = document.getElementById("allmessages")
+                        setTimeout(() => {
+                            messagecontnier.scrollTop = messagecontnier.scrollHeight
+                        }, 200);
+                    })
+                }
+                record()
+                element.classList.add("voicerecordingon")
+
+            })
+        }
+
+        if (voicemessagerecordingcounter % 2 != 0) {
+            stopRecording()
+            element.classList.remove("voicerecordingon")
+
+        }
+
+        voicemessagerecordingcounter++
+
+    }
+
+
+
+    const record = () => {
+        mediaRecorder.start()
+    }
+
+    const stopRecording = () => {
+        mediaRecorder.stop()
+    }
+
+    document.getElementById("messagefield").addEventListener("keypress", function (event) {
+
+        if (event.key === "Enter" && myroomid != null) {
+            event.preventDefault();
+            sendmessage()
+        }
+    });
+
+
+
+
+
+    var reconnectbuttonchatcounter = 0
+    function rotatethereconnecticon() {
+        reconnectbuttonchatcounter++
+    }
+
+
+
+
+
+
+    document.getElementById("gifserchinputfieledd").addEventListener("input", (ev) => {
+        var searchinput = document.getElementById("gifserchinputfieledd").value
+        socket.emit("searchgifforrandomchat", searchinput)
+        if (document.getElementById("useristypingindicator")) {
+            document.getElementById("useristypingindicator").remove()
+        }
+
+    })
+
+    socket.on("cearnallimagesfromgifsearchradnomchat", () => {
+             
+        if(document.getElementById("sdguserfube7t")){
+            document.getElementById("sdguserfube7t").remove()
+        }
+        var alldigcontainer = document.getElementById("allgidcontainerdiv")
+        alldigcontainer.innerHTML = ''
+    })
+
+
+    socket.on("addgifimagetorandomchat", (gifimageurl, imagesize) => {
+     
+        if(document.getElementById("sdguserfube7t")){
+            document.getElementById("sdguserfube7t").remove()
+        }
+        if (document.getElementById("useristypingindicator")) {
+            document.getElementById("useristypingindicator").remove()
+        }
+        var alldigcontainer = document.getElementById("allgidcontainerdiv")
+        var span = document.createElement("span")
+        span.innerHTML = `
+    <img src="${gifimageurl}" class="gifimage" onclick="sharethisgifinthechat('${gifimageurl}', ${imagesize})">
+    `
+        alldigcontainer.appendChild(span)
+    })
+
+    function sharethisgifinthechat(imageurl, imagesize) {
+        document.getElementById("seaechagifdiv").style.display = "none"
+        gifbuttonshoworhiecounter++
+        var uniqueid = new Date().getTime()
+        var usernameinput = document.getElementById("username")
+        var username = usernameinput.value
+        var mymessagespan = document.createElement("span")
+        mymessagespan.innerHTML = `
+
+    <div class="mymessagecontainer" style="padding: 0px;" id="mymessage${uniqueid}" onmouseover="showmymessageoptionsforthismessage('mymessageoption${uniqueid}')" onmouseout="hidemymessageoptionbar('mymessageoption${uniqueid}')">
+<div class="completemessage">
+<img class="chatimages" src="${imageurl}">
+<br>
+<div class="mymessageoptionmainimagediv" id='mymessageoption${uniqueid}' style="display: none;">
+<span class="fa mychatoprionbutton fa-trash"  onclick="deletemymessage(${uniqueid})"></span>
+<span class="fa mychatoprionbutton  fa-times" onclick="hidemymessageoption('mymessageoption${uniqueid}')" ></span>
+</div>
+<span class="mymessagetime">
+
+<span class="mymessagelikeicon" id='mymessagelikediv${uniqueid}' style="display: none;">
+   <span class="mymessagelikecounter" id="mymessagelikecontainer${uniqueid}"></span> <span style="margin-right: 3px;" class="fa mymessagelikeheart fa-heart">  · </span> 
+    </span>
+ ${currenttime()}
+</span>
+</div>
+</div>
+
+`
+        var allmessagecontainer = document.getElementById("allmessages")
+        allmessagecontainer.append(mymessagespan)
+        var messagecontnier = document.getElementById("allmessages")
+        messagecontnier.scrollTop = messagecontnier.scrollHeight
+     
+
+        socket.emit("imagetourldatatextrandomtextchat", myroomid, imageurl, username, imagesize, uniqueid)
+        if (document.getElementById("useristypingindicator")) {
+            document.getElementById("useristypingindicator").remove()
+        }
+
+
+    }
+
+
+
+    function showorhideimagsendbutton() {
+        socket.emit("searchgifforrandomchat", "funny")
+        if (gifbuttonshoworhiecounter % 2 == 0) {
+            document.getElementById("seaechagifdiv").style.display = "block"
+        }
+
+        if (gifbuttonshoworhiecounter % 2 != 0) {
+            document.getElementById("seaechagifdiv").style.display = "none"
+        }
+        gifbuttonshoworhiecounter++
+    }
+
+
+
+
+
+
+
+    document.getElementById("messagevideoinput").addEventListener("change", (ev) => {
+
+        if (document.getElementById("useristypingindicator")) {
+            document.getElementById("useristypingindicator").remove()
+        }
+        var totalselectedfiles = ev.target.files.length
+
+        for (var i = 0; i <= totalselectedfiles - 1; i++) {
+            var targetfile = ev.target.files[i]
+            var videosize = Math.floor((targetfile.size) / (1024 * 1024))
+            var newfilereader = new FileReader()
+            newfilereader.readAsDataURL(targetfile)
+            newfilereader.addEventListener("loadend", (ev) => {
+                var uniqueid = new Date().getTime()
+                var usernameinput = document.getElementById("username")
+                var username = usernameinput.value
+                var mymessagespan = document.createElement("span")
+                mymessagespan.innerHTML = `
+
+      
+            <div class="mymessagecontainer" style="padding: 0px;" id="mymessage${uniqueid}" onmouseover="showmymessageoptionsforthismessage('mymessageoption${uniqueid}')" onmouseout="hidemymessageoptionbar('mymessageoption${uniqueid}')">
+        <div class="completemessage" style="margin-right: 20px;">
+        <video  class="chatyoutubevideo" controls autoplay loop muted>
+        <source src="${ev.target.result}" type="video/mp4">
+          <source src="${ev.target.result}" type="video/ogg">
+
+      </video>
+
+        <br>
+
+        <div class="mymessageoptionmainimagediv myvideoconatineroption" id='mymessageoption${uniqueid}' style="display: none;">
+        <span class="fa mychatoprionbutton fa-trash"  onclick="deletemymessage(${uniqueid})"></span>
+        <span class="fa mychatoprionbutton  fa-times" onclick="hidemymessageoption('mymessageoption${uniqueid}')" ></span>
+        </div>
+        <span class="mymessagetime myvideotimeconatiner">
+        <span class="mymessagelikeicon" id='mymessagelikediv${uniqueid}' style="display: none;">
+           <span class="mymessagelikecounter" id="mymessagelikecontainer${uniqueid}"></span> <span style="margin-right: 3px;" class="fa mymessagelikeheart fa-heart">  · </span> 
+            </span>
+            <span class='myvideotime'>
+            ${currenttime()}
+</span>
+        </span>
+        </div>
+        </div>
+        
+        `
+                var allmessagecontainer = document.getElementById("allmessages")
+                allmessagecontainer.append(mymessagespan)
+                var messagecontnier = document.getElementById("allmessages")
+                messagecontnier.scrollTop = messagecontnier.scrollHeight
+     
+
+                socket.emit("videotourldatatextrandomtextchat", myroomid, ev.target.result, username, videosize, uniqueid)
+                if (document.getElementById("useristypingindicator")) {
+                    document.getElementById("useristypingindicator").remove()
+                }
+            })
+        }
+    })
+
+
+
+
+    // add youtube video to my chat
+    socket.on("addvideototextchatrandomtextchat", (videolink, username, videosize, uniqueid) => {
+     
+          
+        if(document.getElementById("sdguserfube7t")){
+            document.getElementById("sdguserfube7t").remove()
+        }
+
+        if (document.getElementById("useristypingindicator")) {
+            document.getElementById("useristypingindicator").remove()
+        }
+
+        var strangermessagespan = document.createElement("span")
+        strangermessagespan.innerHTML = `
+    <div class="streangermessagecontainer strangervideoconatinerdivs" id="strangermessage${uniqueid}" onmouseover="showstrrangermessageoptoonbar('strangermessageoptionsvideo${uniqueid}')" onmouseout="hidestrangermessgaeoptionbar('strangermessageoptionsvideo${uniqueid}')">
+    <div class="completemessage" style="margin-left: 8px;">
+    <span class="messageimage"  >
+    <video  class="chatyoutubevideo" controls autoplay loop muted>
+  <source src="${videolink}" type="video/mp4">
+</video>
+    </span>
+    <br>
+    <div class="strnegerimagedivoptions" id="strangermessageoptionsvideo${uniqueid}" style="display: none;" style="display: none;">
+    <span class="fa strngermessagechatoprionbutton fa-trash" onclick="deletestrngermessage('strangermessagevideo${uniqueid}')" ></span>
+    <a style="color: black;" class="fa strngermessagechatoprionbutton fa-cloud-download" href="${videolink}" target="_blank" download="ChatWeber${uniqueid}.mp4"></a>
+    <span class="fa strngermessagechatoprionbutton  fa-times" onclick="hidestrangermessageoption('strangermessageoptionsvideo${uniqueid}')" ></span>
+    </div>
+    <span class="streangermessagetime">
+   ${currenttime()}, ${videosize} MB
+    </span>
+    <span class="mymessagelikeicon" id='strangeruserlikediv${uniqueid}' style="display: none;">
+    <span> · </span>
+    <span class="mymessagelikecounter" id="strangermessagelikecontainer${uniqueid}">0</span> <span class="fa mymessagelikeheart fa-heart"> </span>
+      </span>
+    </div>
+</div>
+
+    `
+        var allmessagecontainer = document.getElementById("allmessages")
+        allmessagecontainer.append(strangermessagespan)
+
+    })
+
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<div class="chatrequestconatinerdiv" id="chatrequestconatinerdiv" style="display: none;">
+
+
+    <div class="chatrequestconatntdiv">
+        <img class="chatinvitationimage" src="https://cdn-icons-png.flaticon.com/256/7880/7880162.png">
+        <br>
+        <span class="frindsrequestrecivedheading">Vivek Yadav Invited You</span>
+
+        <p class="frindrequetstdescription">One of you frind invited you to join the chat. You can accepit the chat
+            reuqest to join the conversation in new tab. </p>
+        <div class="frindsrequestbuttonconaterdiv">
+            <button type="button" class="frindsrequestchatbuttons">Reject</button>
+            <button type="button" class="frindsrequestchatbuttons">Accept</button>
+
+        </div>
+    </div>
+
+
+
+</div>
+
+
+<style>
+ 
+
+    .frindrequetstdescription {
+        font-size: 12px;
+        margin-top: 10px;
+        font-weight: 500;
+    }
+
+    .frindsrequestrecivedheading {
+        font-family: 'Cinzel Decorative', cursive;
+        font-size: 13px;
+        font-weight: 900;
+
+    }
+
+    .chatrequestconatinerdiv {
+        width: 100%;
+        position: fixed;
+        bottom: 0%;
+        margin: 0%;
+    }
+
+    .chatinvitationimage {
+        width: 70px;
+        height: 70px;
+        padding-top: 10px;
+        padding-left: 10px;
+        padding-right: 10px;
+        margin-top: -40px;
+        background-color: white;
+        border-radius: 100px 100px 0px 0px;
+
+    }
+
+    .chatrequestconatntdiv {
+        display: block;
+        border-radius: 25px 25px 0px 0px;
+        margin: auto;
+        text-align: center;
+        width: 60%;
+        height: 160px;
+        background-color: white;
+        box-shadow: #ffd8eb 0 1px 25px;
+
+    }
+
+    .frindsrequestchatbuttons {
+        font-family: Jost, sans-serif;
+        background-color: #ff0d86;
+        border: 2px solid hotpink;
+        color: white;
+        padding: 5px;
+        margin: 10px;
+        padding-left: 20px;
+        padding-right: 20px;
+        border-radius: 30px;
+        box-shadow: #ff69b4 0 1px 25px;
+
+    }
+
+
+    @media only screen and (max-width:800px) {
+        .chatrequestconatntdiv {
+            width: 100%;
+        }
+
+        .chatrequestconatntdiv {
+            height: 170;
+        }
+
+    }
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+    @media (max-width: 800px) {
+        .allmessages{
+        box-shadow: none;
+
+        }
+
+        .streangermessagetime {
+    display: inline-block;
+    font-size: 9px;
+    margin-left: 13px;
+    color: #020202;
+}
+
+.videomyvideo{
+        margin-right: 11px;
+    padding-bottom: 0;
+    padding-left: 10px;
+
+}
+
+.myvideotimeconatiner{
+        display: inline-block;
+    font-size: 9px;
+    margin-right: 17px;
+    color: #020202;
+}
+
+.chatyoutubevideo, .mychatyoutubevideo {
+    margin-left: 10px;
+    width: 100%;
+    margin-right: -17px;
+    border-radius: 18px;
+    box-shadow: 0 0 2rem rgb(179 179 179 / 42%), 0 1rem 1rem -1rem rgb(0 0 0 / 15%);
+}
+
+.strangervideoconatinerdivs{
+    margin-left: -7px;
+}
+
+.myvideotimeconatiner{
+
+    margin-right: -9px;
+}
+
+
+.myvideoconatineroption{
+    margin-right: -14px;
+}
+
+    }
+    
+</style>
+
+<script>
+    function sharesitewithfrinds(){
+        navigator.share({
+            title: "Talk To Strangers",
+            url: "https://chatweber.com"
+        })
+    }
+</script>
+
+<script>
+    history.pushState(null, null, location.href);
+window.onpopstate = function () {
+    history.go(1);
+};
+</script>
+
+
+<script>
+   
+
+setInterval(()=>{
+    if(window.innerWidth > 600){
+               var allmessagecontainer = document.getElementById("allmessages")
+
+            var fullwindowhright = window.innerHeight
+            allmessagecontainer.style.height = fullwindowhright - 155 + "px"
+   
+    }
+          
+          if(window.innerWidth < 600){
+                  var allmessagecontainer = document.getElementById("allmessages")
+
+            var fullwindowhright = window.innerHeight
+            allmessagecontainer.style.height = fullwindowhright - 122 + "px"
+
+      
+          }
+
+},100)
+</script>
+
+</body>
+
+</html>

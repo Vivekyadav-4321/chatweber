@@ -1,0 +1,63 @@
+{
+  "short_name": "ChatWeber",
+  "name": "ChatWeber",
+  "description": "Join random chat and connect with strangers from around the world. Chat anonymously and safely with like-minded people and make new friends.",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "/sitelogo.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "/sitelogo.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/sitelogo.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/sitelogo.png",
+      "sizes": "196x196",
+      "type": "image/png"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshots/1.png",
+      "type": "image/png",
+      "sizes": "540x720"
+    },
+    {
+      "src": "/screenshots/2.png",
+      "type": "image/png",
+      "sizes": "540x720"
+    },
+    {
+      "src": "/screenshots/3.png",
+      "type": "image/png",
+      "sizes": "540x720"
+    },
+    {
+      "src": "/screenshots/4.png",
+      "type": "image/png",
+      "sizes": "540x720"
+    },
+    {
+      "src": "/screenshots/5.png",
+      "type": "image/png",
+      "sizes": "540x720"
+    }
+  ],
+  "start_url": "/",
+  "theme_color": "white",
+  "background_color": "white",
+  "url_handlers": [
+    {
+      "origin": "https://chatweber.com"
+    }
+  ]
+}
